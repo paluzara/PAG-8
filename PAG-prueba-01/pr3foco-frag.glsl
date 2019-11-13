@@ -1,8 +1,8 @@
 #version 400
 in vec3 position;
 in vec3 normal;
-uniform vec3 Ka;
-uniform vec3 Kd;
+in vec2 texCoord;
+
 uniform vec3 Ks;
 uniform vec3 Ia;
 uniform vec3 Id;
@@ -11,12 +11,13 @@ uniform float shininess;
 uniform vec3 lightPosition;
 uniform vec3 lightDirection;
 uniform float spotAngle;
-
+uniform sampler2D TexSamplerColor; 
 
 layout (location = 0) out vec4 fragColor;
 
 
-vec3 diffuseAndSpecular() {
+vec3 diffuseAndSpecular(vec4 texColor) {
+vec3 Kd = texColor.rgb;
  vec3 l = normalize( lightPosition-position );
  vec3 d = lightDirection;
  float cosGamma = cos(spotAngle * 180.0 / 3.1416);
@@ -32,5 +33,6 @@ vec3 diffuseAndSpecular() {
  return spotFactor * (diffuse + specular);
 }
 void main() {
- fragColor = vec4(diffuseAndSpecular(), 1.0);
+vec4 texColor = texture(TexSamplerColor, texCoord); 
+ fragColor = vec4(diffuseAndSpecular(texColor), 1.0);
 }

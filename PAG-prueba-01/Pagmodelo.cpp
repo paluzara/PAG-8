@@ -72,6 +72,43 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 		auto v6 = glm::vec3(0.45, 0.45, -0.45);
 		auto v7 = glm::vec3(-0.45, 0.45, -0.45);
 
+		// Cara 5
+		auto c0 = glm::vec2(0, 0.25);
+		auto c1 = glm::vec2(0, 0.5);
+		auto c2 = glm::vec2(0.25, 0.25);
+		auto c3 = glm::vec2(0.25, 0.5);
+		//Cara 3
+
+		auto c4 = glm::vec2(0.25, 0.25);
+		auto c5 = glm::vec2(0.25, 0.5);
+		auto c6 = glm::vec2(0.5, 0.25);
+		auto c7 = glm::vec2(0.5, 0.5);
+
+		
+
+		//Cara 1 
+		auto c12 = glm::vec2(0.25, 0.25);
+		auto c13 = glm::vec2(0.5, 0.25);
+		auto c14 = glm::vec2(0.25, 0);
+		auto c15 = glm::vec2(0.5, 0);
+		
+		//Cara 4
+		auto c20 = glm::vec2(0.75, 0.25);
+		auto c21 = glm::vec2(0.75, 0.5);
+		auto c22 = glm::vec2(1, 0.25);
+		auto c23 = glm::vec2(1, 0.5);
+
+		//Cara 2
+		auto c16 = glm::vec2(0.5, 0.5);
+		auto c17 = glm::vec2(0.5, 0.25);
+		auto c18 = glm::vec2(0.75, 0.25);
+		auto c19 = glm::vec2(0.75, 0.5);
+		//Cara 6
+		auto c8 = glm::vec2(0.25, 0.5);
+		auto c9 = glm::vec2(0.5, 0.5);
+		auto c10 = glm::vec2(0.25, 0.75);
+		auto c11 = glm::vec2(0.5, 0.75);
+
 		vao->addvertice(v0);
 		vao->addvertice(v1);
 		vao->addvertice(v2);
@@ -82,24 +119,36 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 		vao->addvertice(v6);
 		vao->addvertice(v7);
 
+		//cara 5
+		vao->addTodo(v0, v2, v3	,	c0,c3,c1);
+		vao->addTodo(v0, v1, v2,	c0,c2,c3);
 
-		vao->addtriangulo(v0, v2, v3);
-		vao->addtriangulo(v0, v1, v2);
+		
+		//cara 3
+		vao->addTodo(v1, v5, v2, c4, c5, c6);
+		vao->addTodo(v5, v6, v2, c5, c7, c6);
 
-		vao->addtriangulo(v1, v5, v2);
-		vao->addtriangulo(v5, v6, v2);
+		
+		//cara1
+		vao->addTodo(v0, v1, v5, c14, c12, c13);
+		vao->addTodo(v0, v5, v4, c14, c13, c15);
+		
+	
+		//cara 4
+		vao->addTodo(v4, v0, v3, c20, c22, c23);
+		vao->addTodo(v4, v3, v7, c20, c23, c21);
+		//cara 2
 
-		vao->addtriangulo(v0, v1, v5);
-		vao->addtriangulo(v0, v5, v4);
 
-		vao->addtriangulo(v4, v0, v3);
-		vao->addtriangulo(v4, v3, v7);
+		vao->addTodo(v4, v7, v5, c17, c16, c18);
+		vao->addTodo(v5, v7, v6, c19, c16, c19);
+		//Cara 6
 
-		vao->addtriangulo(v4, v7, v5);
-		vao->addtriangulo(v5, v7, v6);
 
-		vao->addtriangulo(v3, v6, v2);
-		vao->addtriangulo(v3, v7, v6);
+		vao->addTodo(v3, v6, v2, c8, c11, c9);
+		vao->addTodo(v3, v7, v6, c8, c10, c11);
+
+
 
 		//cara frente
 		vao->addIndice(GL_TRIANGLES, 0);
@@ -259,6 +308,11 @@ void Pagmodelo::escalar(float x, float y, float z)
 glm::mat4 Pagmodelo::getTransformacion()
 {
 	return this->transformacion;
+}
+
+void Pagmodelo::añadirTextura(PAGtextura * textura)
+{
+	this->textura = textura;
 }
 
 void Pagmodelo::pintate()

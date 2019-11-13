@@ -37,16 +37,16 @@ void PagRenderer::refreshCallback() {
 
 				program->setUniform("mModel", modelo->getTransformacion());
 				program->setUniform("mModelViewProj", mv);
-				program->setUniform("mModelView",mvision);
-				program->setUniform("Ka", material->getKa());
-				program->setUniform("Kd", material->getKd());
+				program->setUniform("mModelView", mvision);
 				program->setUniform("Ks", material->getKs());
 				program->setUniform("Ia", luz->getIa());
 				program->setUniform("Id", luz->getId());
 				program->setUniform("Is", luz->getIs());
 				program->setUniform("shininess", material->getSh());
+				program->setUniform("TexSamplerColor", 0);
 
-				
+
+
 				PAGLuzPuntual* puntual = dynamic_cast<PAGLuzPuntual*>(luz);
 				PAGfoco* foco = dynamic_cast<PAGfoco*>(luz);
 
@@ -145,11 +145,12 @@ void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo)
 	modelo->setModoVisualizacion(GL_TRIANGLES);
 }
 
-void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material)
+void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura)
 {
 	modelo = new Pagmodelo(tipo);
 	modelo->setModoVisualizacion(tipopintar); //Modificar esta variable para cambiar el modo de representacion(Triangulos , alambres , puntos)
 	modelo->setMaterial(material);
+	modelo->añadirTextura(textura);
 }
 
 

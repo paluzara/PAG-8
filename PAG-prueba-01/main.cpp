@@ -169,8 +169,10 @@ int main() {
 
 
 	Pagmaterial *blancoMetalico = new Pagmaterial(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0,1.0), glm::vec3(1.0, 1.0, 1.0), 0.25);
-	
-	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico);
+	PAGtextura * dado = new PAGtextura("dice_texture.png");
+
+
+	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico,dado);
 	
 	
 

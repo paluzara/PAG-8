@@ -51,9 +51,20 @@ void Pagvao::generaArray()
 	glVertexAttribPointer(1, sizeof(glm::vec3) / sizeof(GLfloat),GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2,
 		((GLubyte *)NULL +(sizeof(glm::vec3))));
 
+
+	//Vertices + normales
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3)*normales.size(), normales.data(),
 		GL_STATIC_DRAW);
+
+	//Texturas
+	glGenBuffers(1, &vbocoordText);
+	glBindBuffer(GL_ARRAY_BUFFER, vbocoordText);
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, sizeof(glm::vec2) / sizeof(GLfloat), GL_FLOAT, GL_FALSE, sizeof(glm::vec2), nullptr);
+	glBufferData(GL_ARRAY_BUFFER, coordText.size() * sizeof(glm::vec2), coordText.data(), GL_STATIC_DRAW);
+
 	
+
 	glGenBuffers(1, &_iboSolido);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboSolido);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*indicesSolido.size(),
@@ -111,6 +122,22 @@ bool Pagvao::listoparaDibujar()
 	return listo;
 	
 }
+
+void Pagvao::addTodo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2, glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2)
+{
+	auto normal = glm::triangleNormal(vertice, vertice1, vertice2);
+	normales.push_back(vertice);
+	normales.push_back(normal);
+	coordText.push_back(coordenada);
+	normales.push_back(vertice1);
+	normales.push_back(normal);
+	coordText.push_back(coordenada1);
+	normales.push_back(vertice2);
+	normales.push_back(normal);
+	coordText.push_back(coordenada2);
+}
+
+
 
 Pagvao::Pagvao()
 {

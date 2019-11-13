@@ -44,6 +44,8 @@ public:
 	void escalar(float x, float y, float z);
 	glm::mat4 getTransformacion();
 
+	void añadirTextura(PAGtextura* textura);
+
 	Pagmodelo(tipoModelo tipo);
 	~Pagmodelo();
 

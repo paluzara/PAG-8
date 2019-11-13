@@ -47,7 +47,7 @@ public:
 	void borraBuffers();
 	
 	void addModelo(Pagmodelo::tipoModelo tipo);
-	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material);
+	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura);
 	
 
 	
