@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+// fontsize=14
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>234</y>
+      <w>282</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;singleton&gt;&gt;
+PAGrenderer
+--
+_- instancia: PAGrenderer*_
+- colorBorrado: GLfloat[4]
+--
+_+ getInstancia (): PAGrenderer*_
++ activaZBuffer ()
++ addColorBorrado ( inc: GLclampf )
++ addColorBorrado ( incR: GLclampf, incG: GLclampf,
+                    incB: GLclampf, incA: GLclampf )
++ addShaderProgram ( nombreBase: string )
++ addModelo ( tipo: tipoModelo )
++ borraBuffers ()
++ refrescaVentana ()
++ setColorBorrado ( incR: GLclampf, incG: GLclampf,
+                    incB: GLclampf, incA: GLclampf )
++ setViewport ( orX: GLint, orY: GLint,
+                ancho: GLsizei, alto: GLsizei )
++ vistaPlanta ()
++ vistaAlzado ()
++ vistaPerfil ()
++ vistaDiagonal ()
+*+ addLuzAmbiente(,_Ia: glm::vec3) *
+*+ addLuzPuntual(_Id: glm::vec3 ,_Is: glm::vec3, *
+* _Ia: glm::vec3, posicion: glm::vec3)*
+*+ addFoco(_Id: glm::vec3 ,_Is: glm::vec3, *
+* _Ia: glm::vec3, posicion: glm::vec3,*
+* direccion: glm::vec3,angulo: float)*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>234</y>
+      <w>264</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>PAGshaderProgram
+--
+- identificador: GLuint
+- enlazado: bool
+- mensajeGLSL: string
+*- tipo: PAGTipoLuz tipo*
+--
+- compilar ( nombreArchivo: string,
+             tipoShader: GLenum ): GLuint
++ activar ()
++ creaShaderProgram ( nombreBase: string ): GLuint
++ getMensajeGLSL (): string
++ setUniform ( nombre: string, valor: GLint )
++ setUniform ( nombre: string, valor: GLfloat )
++ setUniform ( nombre: string, valor: glm::vec3 )
++ setUniform ( nombre: string, valor: glm::mat4 )
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>312</y>
+      <w>204</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+r2=programas
+m2=n</panel_attributes>
+    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1206</x>
+      <y>378</y>
+      <w>78</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeración&gt;&gt;
+tipoModelo
+--
+PAG_TRIANGULO
+PAG_CUADRADO
+PAG_TETRAEDRO
+PAG_CUBO</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>384</y>
+      <w>204</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>PAGmodelo
+--
+- modoVisualizacion: GLenum
+--
++ PAGmodelo ( tipo: tipoModelo )
++ pintate ()
++ setModoVisualizacion ( modo: GLenum )</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>408</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>396</y>
+      <w>174</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+r2=modelo
+m2=1</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>846</x>
+      <y>486</y>
+      <w>258</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>PAGvao
+--
+- identificador: GLuint
+- vboVertices: GLuint
+- iboPuntos: GLuint
+- iboAlambre: GLuint
+- iboSolido: GLuint
+- listo: bool
+--
++ addVertice ( vertice: glm::vec3 )
++ addIndice ( modoDibujo: GLenum, valor: GLuint )
++ generaArray ()
++ activaArray ( modoDibujo: GLenum )
++ pintaArray ( modoDibujo: GLenum )
++ listoParaDibujar (): bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>594</y>
+      <w>72</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>template=T
+std::vector</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1038</x>
+      <y>678</y>
+      <w>126</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>std::vector&lt;glm::vec3&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1140</x>
+      <y>618</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;bind&gt;&gt;
+&lt;T-&gt;glm::vec3&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>720</y>
+      <w>108</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>std::vector&lt;GLuint&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1176</x>
+      <y>606</y>
+      <w>126</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+&lt;&lt;bind&gt;&gt;
+&lt;T-&gt;GLuint&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0;100.0;200.0;70.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>618</y>
+      <w>156</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=3
+r2=indicesPuntos\nindicesAlambre\nindicesSolido</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;240.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>618</y>
+      <w>60</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1
+r2=vertices</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>438</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+r2=vao
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>624</y>
+      <w>270</w>
+      <h>306</h>
+    </coordinates>
+    <panel_attributes>PAGcamara
+--
+- posicion: glm::vec3
+- lookAt: glm::vec3
+- fovY: GLfloat
+- ancho: GLint
+- alto: GLint
+- zNear: GLfloat
+- zFar: GLfloat
+--
++ setPosicion ( nueva: glm::vec3 )
++ setPosicion ( x: GLfloat, y: GLfloat, z: GLfloat )
++ setLookAt ( nuevo: glm::vec3 )
++ setLookAt ( x: GLfloat, y: GLfloat, z: GLfloat )
++ setFovXrad ( radianes: GLfloat )
++ setFovXsex ( sexagesimales: GLfloat )
++ setFovYrad ( radianes: GLfloat )
++ setFovYsex ( sexagesimales: GLfloat )
++ setAncho ( ancho: GLint )
++ setAlto ( alto: GLint )
++ setZnear ( valor: GLfloat )
++ setZfar ( valor: GLfloat )
++ mVision (): glm::mat4
++ mProyeccion (): glm::mat4
++ mPV (): glm::mat4
++ pan ( factor: float )
++ tilt ( factor: float )
++ truckDolly ( factorX: float, factorY: float )
++ boom ( factor: float )
++ orbit ( factorX: float, factorY: float )
++ zoom ( factor: float )
+- vectorUp ( v: glm::vec3 ): glm::vec3
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>516</y>
+      <w>54</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2= 1
+r2= camara
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>822</x>
+      <y>744</y>
+      <w>234</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>PAGstatus
+bg=yellow
+--
+- modoMovimiento: PAGtipoMovimiento
+- teclaMantenida: int
+- botonIzqPulsado: bool
+- x: double
+- y: double
+--
++ setModoMovimiento ( nuevo: tipoMovimiento )
++ getModoMovimiento (): tipoMovimiento
++ setTeclaMantenida ( nueva: int )
++ getTeclaMantenida (): int
++ setBotonIzqPulsado ( valor: bool )
++ getBotonIzqPulsado (): bool
++ setPosRaton ( x: double, y: double )
++ getPosRaton ( x: double&amp;, y: double&amp; )
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1416</x>
+      <y>480</y>
+      <w>96</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeración&gt;&gt;
+PAGtipoMovimiento
+bg=yellow
+--
+PAG_PAN
+PAG_TILT
+PAG_TRUCK
+PAG_BOOM
+PAG_ORBIT
+PAG_ZOOM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>198</y>
+      <w>792</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1300.0;470.0;1290.0;10.0;10.0;20.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>564</y>
+      <w>432</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>700.0;10.0;700.0;370.0;10.0;370.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1242</x>
+      <y>462</y>
+      <w>156</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>PAGMaterial
+--
+- kd: glm::vec3
+- ks: glm::vec3
+- ka: glm::vec3
+- shinnies: float
+--
++ setKa(_ka: glm::vec3)
++ setKd(_kd: glm::vec3)
++ setKs(_ks: glm::vec3)
++ setShine(_sh: float)
++ getKa (): glm::vec3
++ getKs (): glm::vec3
++ getKd (): glm::vec3
++ getShine (): float
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1674</x>
+      <y>252</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>438</y>
+      <w>102</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+r2=material
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>474</y>
+      <w>156</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>PAGLuz
+--
+- Id: glm::vec3
+- Is: glm::vec3
+- Ia: glm::vec3
+- tipo: PAGTipoLuz
+--
++ setIa(_ka: glm::vec3)
++ setId(_kd: glm::vec3)
++ setIs(_ks: glm::vec3)
++ setTipo(_sh: PAGtipoLuz)
++ getIa (): glm::vec3
++ getIs (): glm::vec3
++ getId (): glm::vec3
++ getTipo (): PAGTipoLuz
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>246</y>
+      <w>96</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeración&gt;&gt;
+PAGtipoLuz
+bg=yellow
+--
+AMBIENTE
+PUNTUAL
+FOCO
+DIRECCIONAL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>276</y>
+      <w>192</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>130.0;460.0;10.0;460.0;10.0;10.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>186</y>
+      <w>762</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1250.0;80.0;1250.0;10.0;10.0;30.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>270</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>714</y>
+      <w>156</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>PAGLuzPuntual
+--
+- Posicion: glm::vec3
+--
++ setPosicion(posi: glm::vec3)
++ getPosicion (): glm::vec3
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>684</y>
+      <w>156</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>PAGFoco
+--
+- Posicion: glm::vec3
+- Direccion: glm::vec3
+- Angulo: float
+--
++ setPosicion(_Posicion: glm::vec3)
++ setDireccion(_Direccion: glm::vec3)
++ setAngulo(_Angulo: float)
++ getPosicion (): glm::vec3
++ getDireccion (): glm::vec3
++ getAngulo (): float
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>612</y>
+      <w>138</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>210.0;10.0;210.0;90.0;10.0;90.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>612</y>
+      <w>96</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;140.0;90.0;140.0;120.0</additional_attributes>
+  </element>
+</diagram>
