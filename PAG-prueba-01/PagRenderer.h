@@ -26,7 +26,9 @@ class PagRenderer
 
 	
 	
-	Pagmodelo *modelo;
+	int modeloactivo;
+	std::vector<Pagmodelo*> modelos;
+
 	PAGcamara *camara;
 
 
@@ -47,7 +49,7 @@ public:
 	void borraBuffers();
 	
 	void addModelo(Pagmodelo::tipoModelo tipo);
-	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura);
+	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material=nullptr, PAGtextura *textura=nullptr);
 	
 
 	

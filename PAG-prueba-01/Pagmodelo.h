@@ -27,7 +27,8 @@ public:
 		PAG_TRIANGULO,
 		PAG_CUADRADO,
 		PAG_TETRAEDRO,
-		PAG_CUBO
+		PAG_CUBO,
+		PAG_SUELO
 	};
 
 	void pintate();
@@ -46,7 +47,7 @@ public:
 
 	void añadirTextura(PAGtextura* textura);
 
-	Pagmodelo(tipoModelo tipo);
+	Pagmodelo(tipoModelo tipo,int x=4 , int y=4);
 	~Pagmodelo();
 
 };

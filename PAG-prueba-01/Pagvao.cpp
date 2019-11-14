@@ -8,6 +8,18 @@ void Pagvao::addvertice(glm::vec3 vertice)
 }
 
 
+void Pagvao::addverticenormal(glm::vec3 vertice, glm::vec3 normal)
+{
+	normales.push_back(vertice);
+	normales.push_back(normal);
+}
+
+void Pagvao::addCoorText(glm::vec2 coord)
+{
+	this->coordText.push_back(coord);
+}
+
+
 
 void Pagvao::addtriangulo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2)
 {

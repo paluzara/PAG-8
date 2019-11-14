@@ -41,6 +41,8 @@ public:
 	void pintaArray(GLenum modoDibujo);
 	bool listoparaDibujar();
 	void addTodo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2,glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2);
+	void addverticenormal(glm::vec3 vertice, glm::vec3 normal);
+	void addCoorText(glm::vec2 coord);
 
 };
 

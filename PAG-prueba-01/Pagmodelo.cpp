@@ -3,7 +3,7 @@
 
 
 
-Pagmodelo::Pagmodelo(tipoModelo tipo)
+Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 {
 	transformacion = glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
@@ -13,6 +13,35 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 
 	vao = new Pagvao();
 	switch (tipo) {
+
+	case PAG_SUELO:{
+		int j = 0;
+		for (int i = -4; i <= 4; i++) {
+			for (int x = -4; x <= 4; x++) {
+				vao->addverticenormal(glm::vec3(-x, -0.45f, -i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(x, -0.45f, -i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(-x, -0.45f, i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(1.0f + x, -0.45f, i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addCoorText(glm::vec2(0.0f, 0.0f));
+				vao->addCoorText(glm::vec2(1.0f, 0.0f));
+				vao->addCoorText(glm::vec2(0.0f, 1.0f));
+				vao->addCoorText(glm::vec2(1.0f, 1.0f));
+				
+				vao->addIndice(GL_TRIANGLES, 0 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 3 + 4 * j);
+				j++;
+			}
+		}
+
+	
+
+	}
+		break;
+
 	case PAG_TRIANGULO:
 		vao->addvertice(glm::vec3(-0.5, -0.5, 0));
 		vao->addvertice(glm::vec3(0.5, -0.5, 0));
@@ -84,14 +113,14 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 		auto c6 = glm::vec2(0.5, 0.25);
 		auto c7 = glm::vec2(0.5, 0.5);
 
-		
+
 
 		//Cara 1 
 		auto c12 = glm::vec2(0.25, 0.25);
 		auto c13 = glm::vec2(0.5, 0.25);
 		auto c14 = glm::vec2(0.25, 0);
 		auto c15 = glm::vec2(0.5, 0);
-		
+
 		//Cara 4
 		auto c20 = glm::vec2(0.75, 0.25);
 		auto c21 = glm::vec2(0.75, 0.5);
@@ -120,20 +149,20 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 		vao->addvertice(v7);
 
 		//cara 5
-		vao->addTodo(v0, v2, v3	,	c0,c3,c1);
-		vao->addTodo(v0, v1, v2,	c0,c2,c3);
+		vao->addTodo(v0, v2, v3, c0, c3, c1);
+		vao->addTodo(v0, v1, v2, c0, c2, c3);
 
-		
+
 		//cara 3
 		vao->addTodo(v1, v5, v2, c4, c5, c6);
 		vao->addTodo(v5, v6, v2, c5, c7, c6);
 
-		
+
 		//cara1
 		vao->addTodo(v0, v1, v5, c14, c12, c13);
 		vao->addTodo(v0, v5, v4, c14, c13, c15);
-		
-	
+
+
 		//cara 4
 		vao->addTodo(v4, v0, v3, c20, c22, c23);
 		vao->addTodo(v4, v3, v7, c20, c23, c21);
@@ -283,19 +312,19 @@ Pagmodelo::Pagmodelo(tipoModelo tipo)
 }
 
 void Pagmodelo::trasladar(float x, float y, float z)
-{	
-	
-	transformacion=glm::translate(transformacion, glm::vec3(x, y, z));
+{
+
+	transformacion = glm::translate(transformacion, glm::vec3(x, y, z));
 	posicion.x += x;
 	posicion.y += y;
 	posicion.z += z;
 }
 
-void Pagmodelo::rotar(glm::vec3 eje ,float grados)
+void Pagmodelo::rotar(glm::vec3 eje, float grados)
 {
 	transformacion = glm::translate(transformacion, -posicion);
 	transformacion = glm::rotate(transformacion, grados, eje);
-	transformacion = glm::translate(transformacion,posicion);
+	transformacion = glm::translate(transformacion, posicion);
 }
 
 void Pagmodelo::escalar(float x, float y, float z)

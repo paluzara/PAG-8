@@ -14,58 +14,61 @@ PagRenderer* PagRenderer::getInstance() {
 void PagRenderer::refreshCallback() {
 	borraBuffers();
 	bool primeraLuz = true;
-	for (auto program : programas) {
+	for (int i = 0; i < modelos.size(); i++) {
+		for (auto program : programas) {
 
-		for (auto luz : luces) {
-			if (program->getTipoLuz() == luz->getTipoLuz()) {
-				if (program != nullptr) {
-					program->activar();
+			for (auto luz : luces) {
+				if (program->getTipoLuz() == luz->getTipoLuz()) {
+					if (program != nullptr) {
+						program->activar();
+					}
+
+					if (primeraLuz) {
+						glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+						primeraLuz = false;
+					}
+					else {
+						glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+					}
+
+					auto mproyec = camara->mProyeccion();
+					auto mvision = camara->mVision();
+					auto mv = camara->mPv();
+					auto modelo = modelos[i];
+					auto material = modelo->getMaterial();
+
+					program->setUniform("mModel", modelo->getTransformacion());
+					program->setUniform("mModelViewProj", mv);
+					program->setUniform("mModelView", mvision);
+					program->setUniform("Ks", material->getKs());
+					program->setUniform("Ia", luz->getIa());
+					program->setUniform("Id", luz->getId());
+					program->setUniform("Is", luz->getIs());
+					program->setUniform("shininess", material->getSh());
+					program->setUniform("TexSamplerColor", 0);
+
+
+
+					PAGLuzPuntual* puntual = dynamic_cast<PAGLuzPuntual*>(luz);
+					PAGfoco* foco = dynamic_cast<PAGfoco*>(luz);
+
+					if (puntual) {
+						program->setUniform("lightPosition", glm::vec3(mvision*glm::vec4(puntual->getPosicion(), 1.0f)));
+					}
+
+					if (foco) {
+						program->setUniform("mvpMatrix", mv);
+						program->setUniform("lightPosition", glm::vec3(mvision*glm::vec4(foco->getPosicion(), 1.0f)));
+						program->setUniform("lightDirection", glm::normalize(glm::vec3(mvision*glm::vec4(foco->getDireccion(), 1.0f))));
+						program->setUniform("spotAngle", foco->getAngulo());
+					}
+
+					modelo->pintate();
+
 				}
-				
-				if (primeraLuz) {
-					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-					primeraLuz = false;
-				}
-				else {
-					glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-				}
-
-				auto mproyec = camara->mProyeccion();
-				auto mvision = camara->mVision();
-				auto mv = camara->mPv();
-				auto material = modelo->getMaterial();
-
-				program->setUniform("mModel", modelo->getTransformacion());
-				program->setUniform("mModelViewProj", mv);
-				program->setUniform("mModelView", mvision);
-				program->setUniform("Ks", material->getKs());
-				program->setUniform("Ia", luz->getIa());
-				program->setUniform("Id", luz->getId());
-				program->setUniform("Is", luz->getIs());
-				program->setUniform("shininess", material->getSh());
-				program->setUniform("TexSamplerColor", 0);
-
-
-
-				PAGLuzPuntual* puntual = dynamic_cast<PAGLuzPuntual*>(luz);
-				PAGfoco* foco = dynamic_cast<PAGfoco*>(luz);
-
-				if (puntual) {
-					program->setUniform("lightPosition", glm::vec3(mvision*glm::vec4(puntual->getPosicion(),1.0f)));
-				}
-
-				if (foco) {
-					program->setUniform("mvpMatrix",mv);
-					program->setUniform("lightPosition", glm::vec3(mvision*glm::vec4(foco->getPosicion(), 1.0f)));
-					program->setUniform("lightDirection", glm::normalize(glm::vec3(mvision*glm::vec4(foco->getDireccion(), 1.0f))));
-					program->setUniform("spotAngle", foco->getAngulo());
-				}
-
-				modelo->pintate();
 			}
 		}
 	}
-
 
 }
 void PagRenderer::viewPort(int x, int y, int width, int heigh) {
@@ -141,16 +144,21 @@ void PagRenderer::borraBuffers()
 
 void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo)
 {
-	modelo = new Pagmodelo(tipo);
+	Pagmodelo* modelo = new Pagmodelo(tipo);
 	modelo->setModoVisualizacion(GL_TRIANGLES);
+	modelos.push_back(modelo);
 }
 
 void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura)
 {
+	Pagmodelo* modelo = new Pagmodelo(tipo);
 	modelo = new Pagmodelo(tipo);
-	modelo->setModoVisualizacion(tipopintar); //Modificar esta variable para cambiar el modo de representacion(Triangulos , alambres , puntos)
+	modelo->setModoVisualizacion(tipopintar);
 	modelo->setMaterial(material);
 	modelo->añadirTextura(textura);
+
+	modelos.push_back(modelo);
+
 }
 
 
@@ -281,7 +289,7 @@ void PagRenderer::addLuzPuntual(glm::vec3 _Id, glm::vec3 _Is, glm::vec3 _Ia, glm
 
 void PagRenderer::addFoco(glm::vec3 _Id, glm::vec3 _Is, glm::vec3 _Ia, glm::vec3 posicion, glm::vec3 direccion, float angulo)
 {
-	PAGfoco *luz = new PAGfoco(PAGstipoluz::SPOT, _Id, _Is, _Ia, posicion, direccion,angulo);
+	PAGfoco *luz = new PAGfoco(PAGstipoluz::SPOT, _Id, _Is, _Ia, posicion, direccion, angulo);
 
 	this->luces.push_back(luz);
 }
@@ -294,17 +302,17 @@ void PagRenderer::addLuzAmbiente(glm::vec3 _Ia)
 
 void PagRenderer::rotarModelo(glm::vec3 eje, float grados)
 {
-	this->modelo->rotar(eje, grados);
+	this->modelos[modeloactivo]->rotar(eje, grados);
 }
 
 void PagRenderer::trasladarModelo(float x, float y, float z)
 {
-	this->modelo->trasladar(x, y, z);
+	this->modelos[modeloactivo]->trasladar(x, y, z);
 }
 
 void PagRenderer::escalarModelo(float x, float y, float z)
 {
-	modelo->escalar(x, y, z);
+	this->modelos[modeloactivo]->escalar(x, y, z);
 }
 
 PagRenderer::PagRenderer()
@@ -321,7 +329,11 @@ PagRenderer::PagRenderer()
 PagRenderer::~PagRenderer()
 {
 	delete camara;
-	delete modelo;
+
+	for (auto p : modelos)
+	{
+		delete p;
+	}
 	for (auto p : programas)
 	{
 		delete p;
