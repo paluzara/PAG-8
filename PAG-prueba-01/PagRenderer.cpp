@@ -47,6 +47,9 @@ void PagRenderer::refreshCallback() {
 					program->setUniform("shininess", material->getSh());
 					program->setUniform("TexSamplerColor", 0);
 
+					auto textura = modelo->getTextura();
+					textura->activarTextura(GL_TEXTURE0);
+
 
 
 					PAGLuzPuntual* puntual = dynamic_cast<PAGLuzPuntual*>(luz);

@@ -55,3 +55,10 @@ PAGtextura::PAGtextura(std::string filename)
 PAGtextura::~PAGtextura()
 {
 }
+
+void PAGtextura::activarTextura(GLenum numero)
+{
+	glActiveTexture(numero);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+}

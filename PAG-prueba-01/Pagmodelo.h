@@ -46,6 +46,7 @@ public:
 	glm::mat4 getTransformacion();
 
 	void añadirTextura(PAGtextura* textura);
+	PAGtextura* getTextura();
 
 	Pagmodelo(tipoModelo tipo,int x=4 , int y=4);
 	~Pagmodelo();

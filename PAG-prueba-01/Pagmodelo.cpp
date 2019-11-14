@@ -16,12 +16,12 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 
 	case PAG_SUELO:{
 		int j = 0;
-		for (int i = -4; i <= 4; i++) {
-			for (int x = -4; x <= 4; x++) {
-				vao->addverticenormal(glm::vec3(-x, -0.45f, -i), glm::vec3(0.0f, 1.0f, 0.0f));
-				vao->addverticenormal(glm::vec3(x, -0.45f, -i), glm::vec3(0.0f, 1.0f, 0.0f));
-				vao->addverticenormal(glm::vec3(-x, -0.45f, i), glm::vec3(0.0f, 1.0f, 0.0f));
-				vao->addverticenormal(glm::vec3(1.0f + x, -0.45f, i), glm::vec3(0.0f, 1.0f, 0.0f));
+		for (int i = -4; i <= 4; i+=2) {
+			for (int x = -4; x <= 4; x+=2) {
+				vao->addverticenormal(glm::vec3(-1.0f + x, -0.45f, -1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(1.0f + x, -0.45f, -1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(-1.0f + x, -0.45f, 1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
+				vao->addverticenormal(glm::vec3(1.0f + x, -0.45f, 1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
 				vao->addCoorText(glm::vec2(0.0f, 0.0f));
 				vao->addCoorText(glm::vec2(1.0f, 0.0f));
 				vao->addCoorText(glm::vec2(0.0f, 1.0f));
@@ -127,11 +127,8 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 		auto c22 = glm::vec2(1, 0.25);
 		auto c23 = glm::vec2(1, 0.5);
 
-		//Cara 2
-		auto c16 = glm::vec2(0.5, 0.5);
-		auto c17 = glm::vec2(0.5, 0.25);
-		auto c18 = glm::vec2(0.75, 0.25);
-		auto c19 = glm::vec2(0.75, 0.5);
+		
+
 		//Cara 6
 		auto c8 = glm::vec2(0.25, 0.5);
 		auto c9 = glm::vec2(0.5, 0.5);
@@ -167,10 +164,15 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 		vao->addTodo(v4, v0, v3, c20, c22, c23);
 		vao->addTodo(v4, v3, v7, c20, c23, c21);
 		//cara 2
-
+		//Cara 2
+		
+		auto c16 = glm::vec2(0.5, 0.5);
+		auto c17 = glm::vec2(0.5, 0.25);
+		auto c18 = glm::vec2(0.75, 0.25);
+		auto c19 = glm::vec2(0.75, 0.5);
 
 		vao->addTodo(v4, v7, v5, c17, c16, c18);
-		vao->addTodo(v5, v7, v6, c19, c16, c19);
+		vao->addTodo(v5, v7, v6, c18, c16, c19);
 		//Cara 6
 
 
@@ -342,6 +344,11 @@ glm::mat4 Pagmodelo::getTransformacion()
 void Pagmodelo::añadirTextura(PAGtextura * textura)
 {
 	this->textura = textura;
+}
+
+PAGtextura * Pagmodelo::getTextura()
+{
+	return this->textura;
 }
 
 void Pagmodelo::pintate()

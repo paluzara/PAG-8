@@ -159,8 +159,8 @@ int main() {
 	
 
 
-	PagRenderer::getInstance()->addFoco(glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0,0.75, 0),glm::vec3(1, 0.0, 0.0),glm::radians(3.0));
-	PagRenderer::getInstance()->addLuzAmbiente(glm::vec3(0.1, 0.1, 0.1));
+	PagRenderer::getInstance()->addFoco(glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0,0.75, 0),glm::vec3(-1, -1, -1),glm::radians(3.0));
+	PagRenderer::getInstance()->addLuzAmbiente(glm::vec3(0.3, 0.3, 0.3));
 	PagRenderer::getInstance()->addLuzPuntual(glm::vec3 (0.7,0,0.5), glm::vec3(0.7, 0, 0.5), glm::vec3(0, 0, 0), glm::vec3(5,5, 5));
 	
 
@@ -176,7 +176,8 @@ int main() {
 	
 	
 	Pagmaterial *azulMetalico = new Pagmaterial(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), 0.25);
-	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_SUELO, GL_TRIANGLES,azulMetalico);
+	PAGtextura * azulejo = new PAGtextura("azulejo.png");
+	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_SUELO, GL_TRIANGLES,azulMetalico,azulejo);
 	
 
 	
