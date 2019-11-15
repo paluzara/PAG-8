@@ -49,8 +49,33 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_W && action == GLFW_PRESS) {     // W Truck
 		estado.setModoMovimiento(PAG_TRUCK);
 	}
-	if (key == GLFW_KEY_P && action == GLFW_PRESS) {     // W Truck
-		PagRenderer::getInstance()->escalarModelo(0.2,0.2 ,0.2 );
+
+	//////
+	if (key == GLFW_KEY_O && action == GLFW_PRESS) {     //O traladar Modelo eje Y posi
+		PagRenderer::getInstance()->trasladarModelo(0, 0.2, 0);
+	}
+	if (key == GLFW_KEY_L && action == GLFW_PRESS) {     // L trasladar Y nega
+		PagRenderer::getInstance()->trasladarModelo(0, -0.2, 0);
+	}
+	if (key == GLFW_KEY_J && action == GLFW_PRESS) {     //J trasladar X posi
+		PagRenderer::getInstance()->trasladarModelo(0.2, 0, 0);
+
+	}
+	if (key == GLFW_KEY_K && action == GLFW_PRESS) {     // K trasladar X nega
+		PagRenderer::getInstance()->trasladarModelo(-0.2, 0, 0);
+	}
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS) {     // M rotar en eje y 
+		PagRenderer::getInstance()->rotarModelo(glm::vec3(0,1,0), 1);
+	}
+	if (key == GLFW_KEY_N && action == GLFW_PRESS) {     // N  Rotar eje X
+		PagRenderer::getInstance()->rotarModelo(glm::vec3(1, 0, 0), 1);
+	}
+	if (key == GLFW_KEY_9 && action == GLFW_PRESS) {     // 9  Escalar uniforme agrandar
+		PagRenderer::getInstance()->escalarModelo(2.0, 2.0, 2.0);
+	}
+	if (key == GLFW_KEY_0 && action == GLFW_PRESS) {     // 0  Escalar uniforme achicar
+		PagRenderer::getInstance()->escalarModelo(0.5, 0.5, 0.5);
 	}
 }
 

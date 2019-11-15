@@ -18,8 +18,12 @@ class Pagmodelo
 	GLenum modoVisualizacion;
 	Pagvao *vao;
 	Pagmaterial *material;
-	glm::mat4 transformacion;
+	glm::mat4 tranlacion;
+	glm::mat4 rotacion;
+	glm::mat4 escalado;
+	
 	glm::vec3 posicion;
+	
 	PAGtextura *textura;
 
 public:

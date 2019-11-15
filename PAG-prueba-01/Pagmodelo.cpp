@@ -5,7 +5,7 @@
 
 Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 {
-	transformacion = glm::mat4(1.0f); //matriz identidad
+	tranlacion =rotacion=escalado= glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
 	this->material = new Pagmaterial();
 
@@ -316,29 +316,27 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 void Pagmodelo::trasladar(float x, float y, float z)
 {
 
-	transformacion = glm::translate(transformacion, glm::vec3(x, y, z));
-	posicion.x += x;
-	posicion.y += y;
-	posicion.z += z;
+	tranlacion = glm::translate(tranlacion, glm::vec3(x, y, z));
+	
 }
 
 void Pagmodelo::rotar(glm::vec3 eje, float grados)
 {
-	transformacion = glm::translate(transformacion, -posicion);
-	transformacion = glm::rotate(transformacion, grados, eje);
-	transformacion = glm::translate(transformacion, posicion);
+	
+	rotacion = glm::rotate(rotacion, grados, eje);
+
 }
 
 void Pagmodelo::escalar(float x, float y, float z)
 {
-	transformacion = glm::translate(transformacion, -posicion);
-	transformacion = glm::scale(transformacion, glm::vec3(x, y, z));
-	transformacion = glm::translate(transformacion, posicion);
+
+	escalado = glm::scale(escalado, glm::vec3(x, y, z));
+	
 }
 
 glm::mat4 Pagmodelo::getTransformacion()
 {
-	return this->transformacion;
+	return tranlacion * rotacion*escalado;
 }
 
 void Pagmodelo::añadirTextura(PAGtextura * textura)

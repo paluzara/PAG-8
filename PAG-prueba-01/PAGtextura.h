@@ -8,10 +8,7 @@
 class PAGtextura
 {
 	GLuint texture;
-	GLenum gltexture;
-	std::vector<unsigned char> image;
-	unsigned width, heigth;
-
+	
 
 
 public:
