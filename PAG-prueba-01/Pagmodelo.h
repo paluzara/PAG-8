@@ -9,6 +9,7 @@
 #include <gtx/rotate_vector.hpp>
 #include <gtx/transform.hpp>
 #include "PAGtextura.h"
+#include "objloader.hpp"
 
 
 
@@ -53,6 +54,7 @@ public:
 	PAGtextura* getTextura();
 
 	Pagmodelo(tipoModelo tipo,int x=4 , int y=4);
+	Pagmodelo(std::string nombreArchivoobj);
 	~Pagmodelo();
 
 };

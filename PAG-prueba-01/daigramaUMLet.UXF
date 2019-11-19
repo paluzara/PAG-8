@@ -80,7 +80,7 @@ _+ getInstancia (): PAGrenderer*_
 - identificador: GLuint
 - enlazado: bool
 - mensajeGLSL: string
-*- tipo: PAGTipoLuz tipo*
+- tipo: PAGTipoLuz tipo
 --
 - compilar ( nombreArchivo: string,
              tipoShader: GLenum ): GLuint
@@ -179,7 +179,7 @@ m2=*</panel_attributes>
       <x>847</x>
       <y>469</y>
       <w>301</w>
-      <h>161</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>PAGvao
 --
@@ -196,6 +196,9 @@ m2=*</panel_attributes>
 + activaArray ( modoDibujo: GLenum )
 + pintaArray ( modoDibujo: GLenum )
 + listoParaDibujar (): bool
+*+añadirTodo(v1: glm::vec3 ,v2: glm::vec3*
+*,v3: glm::vec3 ,tx1: glm::vec2 ,*
+*tx2: glm::vec2 ,tx3: glm::vec2 )*
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -263,27 +266,27 @@ std::vector</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>987</x>
-      <y>623</y>
+      <y>630</y>
       <w>182</w>
-      <h>119</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=3
 r2=indicesPuntos\nindicesAlambre\nindicesSolido</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;240.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;240.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1078</x>
-      <y>623</y>
+      <y>630</y>
       <w>70</w>
-      <h>56</h>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=1
 r2=vertices</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;20.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

@@ -3,7 +3,7 @@
 
 
 
-Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
+Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 {
 	tranlacion =rotacion=escalado= glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
@@ -16,8 +16,8 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 
 	case PAG_SUELO:{
 		int j = 0;
-		for (int i = -4; i <= 4; i+=2) {
-			for (int x = -4; x <= 4; x+=2) {
+		for (int i = -x0; i <= x0; i+=2) {
+			for (int x = -y0; x <= y0; x+=2) {
 				vao->addverticenormal(glm::vec3(-1.0f + x, -0.45f, -1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
 				vao->addverticenormal(glm::vec3(1.0f + x, -0.45f, -1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
 				vao->addverticenormal(glm::vec3(-1.0f + x, -0.45f, 1.0f + i), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -310,6 +310,36 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x , int y )
 
 	vao->generaArray();
 
+
+}
+
+Pagmodelo::Pagmodelo(std::string nombreArchivoobj)
+{
+
+	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
+	posicion = glm::vec3(0, 0, 0);
+	this->material = new Pagmaterial();
+
+
+
+	vao = new Pagvao();
+
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals;
+	bool res = loadOBJ("vaca.obj", vertices, uvs, normals);
+
+	for (int i=0; i < vertices.size(); i++) {
+		vao->addverticenormal(vertices[i], normals[i]);
+		vao->addIndice(GL_TRIANGLES,i);
+
+
+	}
+	for (int i=0; i < uvs.size(); i++) {
+		vao->addCoorText(uvs[i]);
+	}
+
+	vao->generaArray();
 
 }
 

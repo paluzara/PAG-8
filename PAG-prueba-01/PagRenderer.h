@@ -50,7 +50,7 @@ public:
 	
 	void addModelo(Pagmodelo::tipoModelo tipo);
 	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material=nullptr, PAGtextura *textura=nullptr);
-	
+	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura);
 
 	
 	void vistaPlanta();
@@ -67,6 +67,8 @@ public:
 	void rotarModelo(glm::vec3 eje, float grados);
 	void trasladarModelo(float x ,float y,float z);
     void escalarModelo(float x , float y , float z);
+	int  getModeloActivo();
+	void setModeloActivo(int x);
 
 
 };

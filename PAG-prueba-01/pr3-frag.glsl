@@ -30,7 +30,7 @@ vec3 ads(vec4 texColor)
  return
  (Ia * Kad) +
  (Id * Kad * max( dot(l, n), 0.0)) +
- (Is * Ks * pow( max( dot(r,v), 0.0), Shininess ));
+ (Is * Ks * pow( max( dot(r,v), 0.0), shininess ));
 } 
 
 

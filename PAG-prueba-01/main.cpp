@@ -7,6 +7,7 @@
 #include "PAGstatus.h"
 
 
+
 float red = 0.0;
 float green = 0.0;
 float blue = 0.6;
@@ -175,6 +176,9 @@ int main() {
 	PagRenderer::getInstance()->activarLuces();
 	
 	
+	
+
+
 	crearPrograma("pr3foco", PAGstipoluz::SPOT);
 	
 	crearPrograma("pr3",PAGstipoluz::PUNTUAL);
@@ -197,12 +201,17 @@ int main() {
 	PAGtextura * dado = new PAGtextura("dice_texture.png");
 
 
-	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico,dado);
+	//PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico,dado);
 	
+	
+	PAGtextura * vaca = new PAGtextura("vaca.png");
+	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, blancoMetalico, vaca);
+	PagRenderer::getInstance()->setModeloActivo(2);
 	
 	Pagmaterial *azulMetalico = new Pagmaterial(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), 0.25);
 	PAGtextura * azulejo = new PAGtextura("azulejo.png");
 	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_SUELO, GL_TRIANGLES,azulMetalico,azulejo);
+	
 	
 
 	

@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="objloader.cpp" />
     <ClCompile Include="PAGcamara.cpp" />
     <ClCompile Include="PAGfoco.cpp" />
     <ClCompile Include="Pagluz.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="objloader.hpp" />
     <ClInclude Include="PAGcamara.h" />
     <ClInclude Include="PAGfoco.h" />
     <ClInclude Include="Pagluz.h" />

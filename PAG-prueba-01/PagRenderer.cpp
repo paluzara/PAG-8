@@ -165,6 +165,18 @@ void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagma
 }
 
 
+void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura)
+{
+	Pagmodelo* modelo = new Pagmodelo(archivo);
+	modelo->setModoVisualizacion(tipopintar);
+	modelo->setMaterial(material);
+	modelo->añadirTextura(textura);
+
+	modelos.push_back(modelo);
+
+}
+
+
 
 void PagRenderer::vistaPlanta()
 {
@@ -316,6 +328,16 @@ void PagRenderer::trasladarModelo(float x, float y, float z)
 void PagRenderer::escalarModelo(float x, float y, float z)
 {
 	this->modelos[modeloactivo]->escalar(x, y, z);
+}
+
+int PagRenderer::getModeloActivo()
+{
+	return modeloactivo;
+}
+
+void PagRenderer::setModeloActivo(int x)
+{
+	this->modeloactivo = modeloactivo;
 }
 
 PagRenderer::PagRenderer()

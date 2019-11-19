@@ -14,7 +14,7 @@ out vec3 normal;
 out vec2 texCoord;
 
 void main() {
- normal = vec3( mModelView * vec4(vNormal, 0.0) );
+ normal = vec3( mModelView *transpose(inverse(mModel))* vec4(vNormal, 0.0) );
  position = vec3( mModelView * vec4(vPosition, 1.0) );
 texCoord = textura; 
  gl_Position =  mvpMatrix * mModel * vec4(vPosition, 1.0);
