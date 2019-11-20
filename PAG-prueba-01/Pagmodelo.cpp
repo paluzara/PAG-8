@@ -27,9 +27,10 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 				vao->addCoorText(glm::vec2(0.0f, 1.0f));
 				vao->addCoorText(glm::vec2(1.0f, 1.0f));
 				
-				vao->addIndice(GL_TRIANGLES, 0 + 4 * j);
-				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
 				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
+				vao->addIndice(GL_TRIANGLES, 0 + 4 * j);
+				
 				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
 				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
 				vao->addIndice(GL_TRIANGLES, 3 + 4 * j);

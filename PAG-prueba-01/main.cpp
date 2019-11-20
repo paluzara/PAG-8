@@ -10,7 +10,7 @@
 
 float red = 0.0;
 float green = 0.0;
-float blue = 0.6;
+float blue = 0.0;
 
 PAGstatus estado;
 
@@ -187,29 +187,36 @@ int main() {
 	
 	
 
-
-	PagRenderer::getInstance()->addFoco(glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.5, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0,0.75, 0),glm::vec3(-1, -1, -1),glm::radians(3.0));
-	PagRenderer::getInstance()->addLuzAmbiente(glm::vec3(0.3, 0.3, 0.3));
-	PagRenderer::getInstance()->addLuzPuntual(glm::vec3 (0.7,0,0.5), glm::vec3(0.7, 0, 0.5), glm::vec3(0, 0, 0), glm::vec3(5,5, 5));
+	//Crear las luces
+	PagRenderer::getInstance()->addFoco(glm::vec3(0.0, 0.8, 0.0), glm::vec3(0, 0.8, 0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(-3,0.0, 0),glm::vec3(1, 1, 1),3.0 );
+	PagRenderer::getInstance()->addLuzAmbiente(glm::vec3(0.2, 0.2, 0.2));
+	PagRenderer::getInstance()->addLuzPuntual(glm::vec3 (0.5,0.5,0.5), glm::vec3(0.5, 0.5, 0.5), glm::vec3(0, 0, 0), glm::vec3(5,5, 5));
 	
 
 	
 	
 
-
+	//Crear el dado
 	Pagmaterial *blancoMetalico = new Pagmaterial(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0,1.0), glm::vec3(1.0, 1.0, 1.0), 0.25);
 	PAGtextura * dado = new PAGtextura("dice_texture.png");
-
-
-	//PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico,dado);
+    PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico,dado);
+	PagRenderer::getInstance()->escalarModelo(0.8, 0.8, 0.8);
 	
-	
+
+	//Crear la vaca
 	PAGtextura * vaca = new PAGtextura("vaca.png");
-	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, blancoMetalico, vaca);
-	PagRenderer::getInstance()->setModeloActivo(2);
+	Pagmaterial * vacam= new Pagmaterial(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), 10);
+	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, vacam, vaca);
 	
-	Pagmaterial *azulMetalico = new Pagmaterial(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), 0.25);
-	PAGtextura * azulejo = new PAGtextura("azulejo.png");
+	//Transfomaciones para la vaca
+	PagRenderer::getInstance()->setModeloActivo(1);
+	PagRenderer::getInstance()->escalarModelo(0.4, 0.4, 0.4);
+	PagRenderer::getInstance()->rotarModelo(glm::vec3(1, 0, 0), 4.7);
+	PagRenderer::getInstance()->trasladarModelo(0.6, -0.1, 0.6);
+
+	//Crear el suelo
+	Pagmaterial *azulMetalico = new Pagmaterial(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(1, 1, 1),10);
+	PAGtextura * azulejo = new PAGtextura("madera.png");
 	PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_SUELO, GL_TRIANGLES,azulMetalico,azulejo);
 	
 	

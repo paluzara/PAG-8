@@ -317,16 +317,19 @@ void PagRenderer::addLuzAmbiente(glm::vec3 _Ia)
 
 void PagRenderer::rotarModelo(glm::vec3 eje, float grados)
 {
+	if (modeloactivo < modelos.size())
 	this->modelos[modeloactivo]->rotar(eje, grados);
 }
 
 void PagRenderer::trasladarModelo(float x, float y, float z)
 {
+	if (modeloactivo < modelos.size())
 	this->modelos[modeloactivo]->trasladar(x, y, z);
 }
 
 void PagRenderer::escalarModelo(float x, float y, float z)
 {
+	if(modeloactivo<modelos.size())
 	this->modelos[modeloactivo]->escalar(x, y, z);
 }
 
@@ -337,7 +340,7 @@ int PagRenderer::getModeloActivo()
 
 void PagRenderer::setModeloActivo(int x)
 {
-	this->modeloactivo = modeloactivo;
+	this->modeloactivo = x;
 }
 
 PagRenderer::PagRenderer()

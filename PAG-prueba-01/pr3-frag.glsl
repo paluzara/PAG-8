@@ -19,16 +19,13 @@ vec3 ads(vec4 texColor)
 {
  vec3 Kad = texColor.rgb;
  vec3 n;
- if (gl_FrontFacing) {
+
  n = normalize(normal);
- } else {
- n = normalize(-normal);
- }
+ 
  vec3 l = normalize( lightPosition-position );
  vec3 v = normalize( -position );
  vec3 r = reflect( -l, n );
  return
- (Ia * Kad) +
  (Id * Kad * max( dot(l, n), 0.0)) +
  (Is * Ks * pow( max( dot(r,v), 0.0), shininess ));
 } 
