@@ -14,30 +14,32 @@ PagRenderer* PagRenderer::getInstance() {
 void PagRenderer::refreshCallback() {
 	borraBuffers();
 	bool primeraLuz = true;
-	for (int i = 0; i < modelos.size(); i++) {
-		for (auto program : programas) {
+	for (auto luz : luces) {
+		if (primeraLuz) {
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			primeraLuz = false;
+		}
+		else {
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		}
+		for (int i = 0; i < modelos.size(); i++) {
+			for (auto program : programas) {
 
-			for (auto luz : luces) {
+
 				if (program->getTipoLuz() == luz->getTipoLuz()) {
 					if (program != nullptr) {
 						program->activar();
 					}
 
-					if (primeraLuz) {
-						glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-						primeraLuz = false;
-					}
-					else {
-						glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-					}
+
 
 					auto mproyec = camara->mProyeccion();
 					auto mvision = camara->mVision();
 					auto mv = camara->mPv();
 					auto modelo = modelos[i];
 					auto material = modelo->getMaterial();
-					
-					
+
+
 					program->setUniform("mModel", modelo->getTransformacion());
 					program->setUniform("mModelViewProj", mv);
 					program->setUniform("mModelView", mvision);
@@ -150,9 +152,9 @@ void PagRenderer::borraBuffers()
 
 
 
-void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar,Pagmaterial* material, std::string textura, std::string normalmap)
+void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial* material, std::string textura, std::string normalmap)
 {
-	Pagmodelo* modelo = new Pagmodelo(tipo,textura,normalmap);
+	Pagmodelo* modelo = new Pagmodelo(tipo, textura, normalmap);
 	modelo->setMaterial(material);
 	modelo->setModoVisualizacion(tipopintar);
 
@@ -164,10 +166,10 @@ void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar,Pagmat
 
 void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string textura, std::string normalmap)
 {
-	Pagmodelo* modelo = new Pagmodelo(archivo,textura,normalmap);
+	Pagmodelo* modelo = new Pagmodelo(archivo, textura, normalmap);
 	modelo->setModoVisualizacion(tipopintar);
 	modelo->setMaterial(material);
-	
+
 
 	modelos.push_back(modelo);
 
@@ -315,19 +317,19 @@ void PagRenderer::addLuzAmbiente(glm::vec3 _Ia)
 void PagRenderer::rotarModelo(glm::vec3 eje, float grados)
 {
 	if (modeloactivo < modelos.size())
-	this->modelos[modeloactivo]->rotar(eje, grados);
+		this->modelos[modeloactivo]->rotar(eje, grados);
 }
 
 void PagRenderer::trasladarModelo(float x, float y, float z)
 {
 	if (modeloactivo < modelos.size())
-	this->modelos[modeloactivo]->trasladar(x, y, z);
+		this->modelos[modeloactivo]->trasladar(x, y, z);
 }
 
 void PagRenderer::escalarModelo(float x, float y, float z)
 {
-	if(modeloactivo<modelos.size())
-	this->modelos[modeloactivo]->escalar(x, y, z);
+	if (modeloactivo < modelos.size())
+		this->modelos[modeloactivo]->escalar(x, y, z);
 }
 
 int PagRenderer::getModeloActivo()
