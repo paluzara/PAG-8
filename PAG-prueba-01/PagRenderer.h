@@ -48,9 +48,9 @@ public:
 	void addShaderProgram(std::string nombreBase, PAGstipoluz tipo);
 	void borraBuffers();
 	
-	void addModelo(Pagmodelo::tipoModelo tipo);
-	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material=nullptr, PAGtextura *textura=nullptr);
-	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material,std::string texura);
+
+	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material,std::string textura, std::string normalmap);
+	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material,std::string texura, std::string normalMap);
 
 	
 	void vistaPlanta();

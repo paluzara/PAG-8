@@ -47,11 +47,12 @@ void PagRenderer::refreshCallback() {
 					program->setUniform("Is", luz->getIs());
 					program->setUniform("shininess", material->getSh());
 					program->setUniform("TexSamplerColor", 0);
-					program->setUniform("NormalMap", 1);
+					program->setUniform("TexSamplerBump", 1);
 
 					auto textura = modelo->getTextura();
 					textura->activarTextura(GL_TEXTURE0);
-
+					auto normalMap = modelo->getNormalMap();
+					normalMap->activarTextura(GL_TEXTURE1);
 
 
 					PAGLuzPuntual* puntual = dynamic_cast<PAGLuzPuntual*>(luz);
@@ -147,29 +148,23 @@ void PagRenderer::borraBuffers()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo)
-{
-	Pagmodelo* modelo = new Pagmodelo(tipo);
-	modelo->setModoVisualizacion(GL_TRIANGLES);
-	modelos.push_back(modelo);
-}
 
-void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura)
+
+void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar,Pagmaterial* material, std::string textura, std::string normalmap)
 {
-	Pagmodelo* modelo = new Pagmodelo(tipo);
-	modelo = new Pagmodelo(tipo);
-	modelo->setModoVisualizacion(tipopintar);
+	Pagmodelo* modelo = new Pagmodelo(tipo,textura,normalmap);
 	modelo->setMaterial(material);
-	modelo->añadirTextura(textura);
+	modelo->setModoVisualizacion(tipopintar);
+
 
 	modelos.push_back(modelo);
 
 }
 
 
-void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string textura)
+void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string textura, std::string normalmap)
 {
-	Pagmodelo* modelo = new Pagmodelo(archivo,textura);
+	Pagmodelo* modelo = new Pagmodelo(archivo,textura,normalmap);
 	modelo->setModoVisualizacion(tipopintar);
 	modelo->setMaterial(material);
 	

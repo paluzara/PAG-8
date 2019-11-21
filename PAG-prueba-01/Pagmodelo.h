@@ -53,9 +53,10 @@ public:
 
 	void añadirTextura(PAGtextura* textura);
 	PAGtextura* getTextura();
+	PAGtextura* getNormalMap();
 
-	Pagmodelo(tipoModelo tipo,int x=4 , int y=4);
-	Pagmodelo(std::string nombreArchivoobj,std::string nombreTextura);
+	Pagmodelo(tipoModelo tipo, std::string textura, std::string normalmap,int x=4 , int y=4);
+	Pagmodelo(std::string nombreArchivoobj,std::string nombreTextura, std::string normalMap);
 	~Pagmodelo();
 
 

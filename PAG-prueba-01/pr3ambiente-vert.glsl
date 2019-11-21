@@ -4,6 +4,7 @@
 layout (location = 0) in vec3 posicion;
 layout (location = 1) in vec3 vNormal; 
 layout (location = 2) in vec2 textura; 
+layout (location = 3) in vec3 tangentes; 
 
 uniform mat4 mModelViewProj;
 uniform mat4 mModelView;

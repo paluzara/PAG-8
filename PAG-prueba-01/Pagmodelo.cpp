@@ -3,11 +3,13 @@
 
 
 
-Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
+Pagmodelo::Pagmodelo(tipoModelo tipo, std::string textura, std::string normalmap, int x0 , int y0 )
 {
 	tranlacion =rotacion=escalado= glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
 	this->material = new Pagmaterial();
+	this->textura = new PAGtextura(textura);
+	this->normalMap= new PAGtextura(normalmap);
 
 
 
@@ -30,6 +32,9 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 
 				auto tangente=calcularTangete(glm::vec3(-1.0f + x, -0.45f, -1.0f + i), glm::vec3(1.0f + x, -0.45f, -1.0f + i), glm::vec3(-1.0f + x, -0.45f, 1.0f + i)
 					, glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 0.0f), glm::vec2(0.0f, 1.0f));
+				vao->addTangete(tangente);
+				vao->addTangete(tangente);
+				vao->addTangete(tangente);
 				vao->addTangete(tangente);
 				
 				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
@@ -319,13 +324,14 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 
 }
 
-Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura)
+Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, std::string nomalmap)
 {
 
 	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
 	this->material = new Pagmaterial();
 	this->textura = new PAGtextura(nombreTextura);
+	this->normalMap = new PAGtextura(nomalmap);
 
 
 	vao = new Pagvao();
@@ -392,6 +398,11 @@ void Pagmodelo::añadirTextura(PAGtextura * textura)
 PAGtextura * Pagmodelo::getTextura()
 {
 	return this->textura;
+}
+
+PAGtextura * Pagmodelo::getNormalMap()
+{
+	return this->normalMap;
 }
 
 void Pagmodelo::pintate()
