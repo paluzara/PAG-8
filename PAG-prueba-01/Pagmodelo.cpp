@@ -26,6 +26,11 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 				vao->addCoorText(glm::vec2(1.0f, 0.0f));
 				vao->addCoorText(glm::vec2(0.0f, 1.0f));
 				vao->addCoorText(glm::vec2(1.0f, 1.0f));
+
+
+				auto tangente=calcularTangete(glm::vec3(-1.0f + x, -0.45f, -1.0f + i), glm::vec3(1.0f + x, -0.45f, -1.0f + i), glm::vec3(-1.0f + x, -0.45f, 1.0f + i)
+					, glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 0.0f), glm::vec2(0.0f, 1.0f));
+				vao->addTangete(tangente);
 				
 				vao->addIndice(GL_TRIANGLES, 2 + 4 * j);
 				vao->addIndice(GL_TRIANGLES, 1 + 4 * j);
@@ -314,13 +319,13 @@ Pagmodelo::Pagmodelo(tipoModelo tipo, int x0 , int y0 )
 
 }
 
-Pagmodelo::Pagmodelo(std::string nombreArchivoobj)
+Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura)
 {
 
 	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
 	posicion = glm::vec3(0, 0, 0);
 	this->material = new Pagmaterial();
-
+	this->textura = new PAGtextura(nombreTextura);
 
 
 	vao = new Pagvao();
@@ -330,15 +335,24 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj)
 	std::vector<glm::vec3> normals;
 	bool res = loadOBJ("vaca.obj", vertices, uvs, normals);
 
-	for (int i=0; i < vertices.size(); i++) {
+	for (int i=0; i < vertices.size(); i+=3) {
 		vao->addverticenormal(vertices[i], normals[i]);
 		vao->addIndice(GL_TRIANGLES,i);
-
-
-	}
-	for (int i=0; i < uvs.size(); i++) {
+		vao->addverticenormal(vertices[i+1], normals[i+1]);
+		vao->addIndice(GL_TRIANGLES, i+1);
+		vao->addverticenormal(vertices[i+2], normals[i+2]);
+		vao->addIndice(GL_TRIANGLES, i+2);
 		vao->addCoorText(uvs[i]);
+		vao->addCoorText(uvs[i+1]);
+		vao->addCoorText(uvs[i+2]);
+
+		auto tangente=calcularTangete(vertices[i], vertices[i + 1], vertices[i + 2], uvs[i], uvs[i + 1], uvs[i + 2]);
+		vao->addTangete(tangente);
+		vao->addTangete(tangente);
+		vao->addTangete(tangente);
+			
 	}
+	
 
 	vao->generaArray();
 
@@ -421,4 +435,20 @@ Pagmodelo::~Pagmodelo()
 {
 	delete vao;
 	delete material;
+}
+
+glm::vec3 Pagmodelo::calcularTangete(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2, glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2)
+{
+	glm::vec3 edge1 =vertice - vertice1;
+	glm::vec3 edge2 = vertice1 - vertice2;
+	glm::vec2 deltaUV1 = coordenada - coordenada1;
+	glm::vec2 deltaUV2 = coordenada1 - coordenada2;
+	float f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+
+	glm::vec3 tangent1;
+	tangent1.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+	tangent1.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+	tangent1.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+	tangent1 = glm::normalize(tangent1);
+	return tangent1;
 }

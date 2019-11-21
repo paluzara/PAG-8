@@ -19,6 +19,11 @@ void Pagvao::addCoorText(glm::vec2 coord)
 	this->coordText.push_back(coord);
 }
 
+void Pagvao::addTangete(glm::vec3 tangente)
+{
+	this->tangentes.push_back(tangente);
+}
+
 
 
 void Pagvao::addtriangulo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2)
@@ -74,6 +79,13 @@ void Pagvao::generaArray()
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, sizeof(glm::vec2) / sizeof(GLfloat), GL_FLOAT, GL_FALSE, sizeof(glm::vec2), nullptr);
 	glBufferData(GL_ARRAY_BUFFER, coordText.size() * sizeof(glm::vec2), coordText.data(), GL_STATIC_DRAW);
+	
+	//Tangentes
+	glGenBuffers(1, &vboTangentes);
+	glBindBuffer(GL_ARRAY_BUFFER, vboTangentes);
+	glEnableVertexAttribArray(3);
+	glVertexAttribPointer(3, sizeof(glm::vec3) / sizeof(GLfloat), GL_FLOAT, GL_FALSE, sizeof(glm::vec3), nullptr);
+	glBufferData(GL_ARRAY_BUFFER, tangentes.size() * sizeof(glm::vec3), tangentes.data(), GL_STATIC_DRAW);
 
 	
 
@@ -147,6 +159,21 @@ void Pagvao::addTodo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2, 
 	normales.push_back(vertice2);
 	normales.push_back(normal);
 	coordText.push_back(coordenada2);
+
+	glm::vec3 edge1 = vertice - vertice1;
+	glm::vec3 edge2 = vertice1 - vertice2;
+	glm::vec2 deltaUV1 = coordenada - coordenada1;
+	glm::vec2 deltaUV2 = coordenada1 - coordenada2;
+	float f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+
+	glm::vec3 tangent1;
+	tangent1.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+	tangent1.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+	tangent1.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+	tangent1 = glm::normalize(tangent1);
+	tangentes.push_back(tangent1);
+	tangentes.push_back(tangent1);
+	tangentes.push_back(tangent1);
 }
 
 

@@ -26,6 +26,7 @@ class Pagmodelo
 	glm::vec3 posicion;
 	
 	PAGtextura *textura;
+	PAGtextura *normalMap;
 
 public:
 	enum tipoModelo {
@@ -54,8 +55,11 @@ public:
 	PAGtextura* getTextura();
 
 	Pagmodelo(tipoModelo tipo,int x=4 , int y=4);
-	Pagmodelo(std::string nombreArchivoobj);
+	Pagmodelo(std::string nombreArchivoobj,std::string nombreTextura);
 	~Pagmodelo();
+
+
+	glm::vec3 calcularTangete(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2, glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2);
 
 };
 

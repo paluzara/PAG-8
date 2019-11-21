@@ -16,6 +16,7 @@ class Pagvao
 	GLuint _iboSolido;
 	bool listo;
 	GLuint vbocoordText;
+	GLuint vboTangentes;
 
 	std::vector<GLuint> indicesPuntos;
 	std::vector<GLuint> indicesAlambre;
@@ -23,6 +24,7 @@ class Pagvao
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normales;
 	std::vector<glm::vec2> coordText;
+	std::vector<glm::vec3> tangentes;
 	
 
 
@@ -43,6 +45,7 @@ public:
 	void addTodo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2,glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2);
 	void addverticenormal(glm::vec3 vertice, glm::vec3 normal);
 	void addCoorText(glm::vec2 coord);
+	void addTangete(glm::vec3 tangente);
 
 };
 

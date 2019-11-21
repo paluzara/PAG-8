@@ -50,7 +50,7 @@ public:
 	
 	void addModelo(Pagmodelo::tipoModelo tipo);
 	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material=nullptr, PAGtextura *textura=nullptr);
-	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura);
+	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material,std::string texura);
 
 	
 	void vistaPlanta();

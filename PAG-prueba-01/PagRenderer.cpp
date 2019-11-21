@@ -36,7 +36,8 @@ void PagRenderer::refreshCallback() {
 					auto mv = camara->mPv();
 					auto modelo = modelos[i];
 					auto material = modelo->getMaterial();
-
+					
+					
 					program->setUniform("mModel", modelo->getTransformacion());
 					program->setUniform("mModelViewProj", mv);
 					program->setUniform("mModelView", mvision);
@@ -46,6 +47,7 @@ void PagRenderer::refreshCallback() {
 					program->setUniform("Is", luz->getIs());
 					program->setUniform("shininess", material->getSh());
 					program->setUniform("TexSamplerColor", 0);
+					program->setUniform("NormalMap", 1);
 
 					auto textura = modelo->getTextura();
 					textura->activarTextura(GL_TEXTURE0);
@@ -165,12 +167,12 @@ void PagRenderer::addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagma
 }
 
 
-void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, PAGtextura *textura)
+void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string textura)
 {
-	Pagmodelo* modelo = new Pagmodelo(archivo);
+	Pagmodelo* modelo = new Pagmodelo(archivo,textura);
 	modelo->setModoVisualizacion(tipopintar);
 	modelo->setMaterial(material);
-	modelo->añadirTextura(textura);
+	
 
 	modelos.push_back(modelo);
 

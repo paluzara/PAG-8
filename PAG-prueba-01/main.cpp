@@ -204,9 +204,9 @@ int main() {
 	
 
 	//Crear la vaca
-	PAGtextura * vaca = new PAGtextura("vaca.png");
+	
 	Pagmaterial * vacam= new Pagmaterial(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), 10);
-	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, vacam, vaca);
+	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, vacam, "vaca.png");
 	
 	//Transfomaciones para la vaca
 	PagRenderer::getInstance()->setModeloActivo(1);
