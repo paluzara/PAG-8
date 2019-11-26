@@ -339,6 +339,7 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
+	
 	bool res = loadOBJ("vaca.obj", vertices, uvs, normals);
 
 	for (int i=0; i < vertices.size(); i+=3) {
@@ -363,6 +364,35 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 	vao->generaArray();
 
 }
+
+//void Pagmodelo::CargarModeloAssimp(std::string nombreArchivoobj, std::string nombreTextura, std::string nomalmap)
+//{
+//
+//	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
+//	posicion = glm::vec3(0, 0, 0);
+//	this->material = new Pagmaterial();
+//	this->textura = new PAGtextura(nombreTextura);
+//	this->normalMap = new PAGtextura(nomalmap);
+//
+//
+//	vao = new Pagvao();
+//
+//	std::vector<glm::vec3> vertices;
+//	std::vector<glm::vec2> uvs;
+//	std::vector<glm::vec3> normals;
+//	std::vector<GLuint> indics;
+//
+//	bool res = loadAssImp("vaca.obj", indics, vertices, uvs, normals);
+//
+//	vao->setVer(vertices);
+//	vao->setNorm(normals);
+//	vao->setCoordt(uvs);
+//	vao->setIndices(indics);
+//
+//	vao->generaArray();
+//
+//}
+
 
 void Pagmodelo::trasladar(float x, float y, float z)
 {

@@ -46,6 +46,10 @@ public:
 	void addverticenormal(glm::vec3 vertice, glm::vec3 normal);
 	void addCoorText(glm::vec2 coord);
 	void addTangete(glm::vec3 tangente);
+	void setVer(std::vector<glm::vec3> vertices);
+	void setNorm(std::vector<glm::vec3> vertices);
+	void setCoordt(std::vector<glm::vec2> vertices);
+	void setIndices(std::vector<GLuint> indicesSolido);
 
 };
 

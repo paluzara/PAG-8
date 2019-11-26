@@ -77,7 +77,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%userprofile%\Desktop\glwrappers\glew-2.1.0\include;%userprofile%\Desktop\glwrappers\glfw-3.2.1.bin.WIN32\include;%userprofile%\Desktop\glwrappers\glm-0.9.9.0\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%userprofile%\Desktop\glwrappers\glew-2.1.0\include;%userprofile%\Desktop\glwrappers\glfw-3.2.1.bin.WIN32\include;%userprofile%\Desktop\glwrappers\glm-0.9.9.0\glm\glm;F:\Universidad\uni\4 curso\Grafica\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%userprofile%\Desktop\glwrappers\glew-2.1.0\lib\Release\Win32;%userprofile%\Desktop\glwrappers\glfw-3.2.1.bin.WIN32\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -100,7 +100,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%userprofile%\Desktop\glwrappers\glew-2.1.0\include;%userprofile%\Desktop\glwrappers\glfw-3.2.1.bin.WIN32\include;%userprofile%\Desktop\glwrappers\glm-0.9.9.0\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%userprofile%\Desktop\glwrappers\glew-2.1.0\include;%userprofile%\Desktop\glwrappers\glfw-3.2.1.bin.WIN32\include;%userprofile%\Desktop\glwrappers\glm-0.9.9.0\glm\glm;F:\Universidad\uni\4 curso\Grafica\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

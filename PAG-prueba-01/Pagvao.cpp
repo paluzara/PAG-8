@@ -24,6 +24,27 @@ void Pagvao::addTangete(glm::vec3 tangente)
 	this->tangentes.push_back(tangente);
 }
 
+void Pagvao::setVer(std::vector<glm::vec3> _vertices)
+{
+	this->vertices = _vertices;
+}
+
+void Pagvao::setNorm(std::vector<glm::vec3> _normales)
+{
+	this->normales = _normales;
+}
+
+void Pagvao::setCoordt(std::vector<glm::vec2> _coort)
+{
+	this->coordText = _coort;
+
+}
+
+void Pagvao::setIndices(std::vector<GLuint> _indicesSolido)
+{
+	this->indicesSolido = _indicesSolido;
+}
+
 
 
 void Pagvao::addtriangulo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2)

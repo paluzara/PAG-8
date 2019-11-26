@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include <glm.hpp>
-
+#include <GL\glew.h>
 #include "objloader.hpp"
 #pragma warning(disable : 4996)
 
@@ -111,7 +111,7 @@ bool loadOBJ(
 }
 
 
-#ifdef USE_ASSIMP // don't use this #define, it's only for me (it AssImp fails to compile on your machine, at least all the other tutorials still work)
+#ifdef USE_ASSIMP
 
 // Include AssImp
 #include <assimp/Importer.hpp>      // C++ importer interface
@@ -120,7 +120,7 @@ bool loadOBJ(
 
 bool loadAssImp(
 	const char * path, 
-	std::vector<unsigned short> & indices,
+	std::vector<GLuint> & indices,
 	std::vector<glm::vec3> & vertices,
 	std::vector<glm::vec2> & uvs,
 	std::vector<glm::vec3> & normals
