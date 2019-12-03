@@ -133,6 +133,8 @@
     <ClCompile Include="PAGLuzPuntual.cpp" />
     <ClCompile Include="Pagmaterial.cpp" />
     <ClCompile Include="Pagmodelo.cpp" />
+    <ClCompile Include="PAGmodeloRevolucion.cpp" />
+    <ClCompile Include="PAGperfilSubdivision.cpp" />
     <ClCompile Include="PagRenderer.cpp" />
     <ClCompile Include="PAGshaderProgram.cpp" />
     <ClCompile Include="PAGstatus.cpp" />
@@ -148,6 +150,8 @@
     <ClInclude Include="PAGLuzPuntual.h" />
     <ClInclude Include="Pagmaterial.h" />
     <ClInclude Include="Pagmodelo.h" />
+    <ClInclude Include="PAGmodeloRevolucion.h" />
+    <ClInclude Include="PAGperfilSubdivision.h" />
     <ClInclude Include="PagRenderer.h" />
     <ClInclude Include="PAGshaderProgram.h" />
     <ClInclude Include="PAGstatus.h" />

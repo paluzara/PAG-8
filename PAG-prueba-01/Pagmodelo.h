@@ -57,10 +57,12 @@ public:
 
 	Pagmodelo(tipoModelo tipo, std::string textura, std::string normalmap,int x=4 , int y=4);
 	Pagmodelo(std::string nombreArchivoobj,std::string nombreTextura, std::string normalMap);
-	~Pagmodelo();
 	Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, std::string nomalmap, bool asimp );
+	Pagmodelo();
+
 
 	glm::vec3 calcularTangete(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2, glm::vec2 coordenada, glm::vec2 coordenada1, glm::vec2 coordenada2);
 
+	virtual ~Pagmodelo();
 };
 

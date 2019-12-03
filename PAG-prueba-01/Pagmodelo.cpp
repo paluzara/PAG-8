@@ -395,6 +395,10 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 
 }
 
+Pagmodelo::Pagmodelo()
+{
+}
+
 
 void Pagmodelo::trasladar(float x, float y, float z)
 {

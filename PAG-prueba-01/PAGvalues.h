@@ -19,3 +19,9 @@ enum PAGstipoluz {
 	AMBIENTE,
 	MODELO
 };
+
+enum PAGpartesRevolucion : int {
+	PAG_CUERPO = 0,
+	PAG_TAPA_SUP = 1,
+	PAG_TAPA_INF = 2
+};
