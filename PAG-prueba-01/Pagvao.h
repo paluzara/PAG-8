@@ -50,6 +50,6 @@ public:
 	void setNorm(std::vector<glm::vec3> vertices);
 	void setCoordt(std::vector<glm::vec2> vertices);
 	void setIndices(std::vector<GLuint> indicesSolido);
-
+	void setTangents(std::vector<glm::vec3> tangents);
 };
 

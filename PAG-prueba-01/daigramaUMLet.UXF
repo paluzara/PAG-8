@@ -29,7 +29,7 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
     <id>UMLClass</id>
     <coordinates>
       <x>462</x>
-      <y>140</y>
+      <y>119</y>
       <w>329</w>
       <h>336</h>
     </coordinates>
@@ -71,7 +71,7 @@ _+ getInstancia (): PAGrenderer*_
     <id>UMLClass</id>
     <coordinates>
       <x>1008</x>
-      <y>140</y>
+      <y>119</y>
       <w>308</w>
       <h>161</h>
     </coordinates>
@@ -99,7 +99,7 @@ _+ getInstancia (): PAGrenderer*_
     <id>Relation</id>
     <coordinates>
       <x>784</x>
-      <y>231</y>
+      <y>210</y>
       <w>238</w>
       <h>35</h>
     </coordinates>
@@ -112,7 +112,7 @@ m2=n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1260</x>
-      <y>322</y>
+      <y>301</y>
       <w>91</w>
       <h>77</h>
     </coordinates>
@@ -129,7 +129,7 @@ PAG_CUBO</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>966</x>
-      <y>315</y>
+      <y>294</y>
       <w>238</w>
       <h>133</h>
     </coordinates>
@@ -153,7 +153,7 @@ PAG_CUBO</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1197</x>
-      <y>343</y>
+      <y>322</y>
       <w>77</w>
       <h>35</h>
     </coordinates>
@@ -164,7 +164,7 @@ PAG_CUBO</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>784</x>
-      <y>329</y>
+      <y>308</y>
       <w>196</w>
       <h>35</h>
     </coordinates>
@@ -177,15 +177,17 @@ m2=*</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>847</x>
-      <y>469</y>
+      <y>462</y>
       <w>301</w>
-      <h>168</h>
+      <h>182</h>
     </coordinates>
     <panel_attributes>PAGvao
 --
 - identificador: GLuint
 - vboVertices: GLuint
 - iboPuntos: GLuint
+- vboTangentes: GLuintles: GLuint
+- vboCoordtExt :Gluint
 - iboAlambre: GLuint
 - iboSolido: GLuint
 - listo: bool
@@ -206,7 +208,7 @@ m2=*</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1162</x>
-      <y>560</y>
+      <y>539</y>
       <w>84</w>
       <h>35</h>
     </coordinates>
@@ -217,8 +219,8 @@ std::vector</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1078</x>
-      <y>665</y>
+      <x>1113</x>
+      <y>651</y>
       <w>147</w>
       <h>21</h>
     </coordinates>
@@ -229,20 +231,20 @@ std::vector</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1190</x>
-      <y>588</y>
-      <w>105</w>
-      <h>91</h>
+      <y>567</y>
+      <w>126</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 &lt;&lt;bind&gt;&gt;
 &lt;T-&gt;glm::vec3&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;70.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1155</x>
-      <y>707</y>
+      <y>686</y>
       <w>126</w>
       <h>21</h>
     </coordinates>
@@ -253,7 +255,7 @@ std::vector</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1232</x>
-      <y>574</y>
+      <y>553</y>
       <w>147</w>
       <h>154</h>
     </coordinates>
@@ -266,46 +268,46 @@ std::vector</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>987</x>
-      <y>630</y>
+      <y>637</y>
       <w>182</w>
-      <h>112</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=3
 r2=indicesPuntos\nindicesAlambre\nindicesSolido</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0;240.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;240.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>630</y>
-      <w>70</w>
-      <h>49</h>
+      <x>1064</x>
+      <y>637</y>
+      <w>77</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m2=1
 r2=vertices</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;50.0</additional_attributes>
+    <additional_attributes>30.0;10.0;90.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1043</x>
-      <y>441</y>
+      <y>420</y>
       <w>42</w>
-      <h>42</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 r2=vao
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;20.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>476</x>
-      <y>595</y>
+      <y>574</y>
       <w>315</w>
       <h>357</h>
     </coordinates>
@@ -348,7 +350,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>609</x>
-      <y>469</y>
+      <y>448</y>
       <w>63</w>
       <h>140</h>
     </coordinates>
@@ -362,7 +364,7 @@ r2= camara
     <id>UMLClass</id>
     <coordinates>
       <x>819</x>
-      <y>735</y>
+      <y>714</y>
       <w>273</w>
       <h>175</h>
     </coordinates>
@@ -390,7 +392,7 @@ bg=yellow
     <id>UMLClass</id>
     <coordinates>
       <x>1512</x>
-      <y>427</y>
+      <y>406</y>
       <w>112</w>
       <h>105</h>
     </coordinates>
@@ -410,7 +412,7 @@ PAG_ZOOM</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>658</x>
-      <y>98</y>
+      <y>77</y>
       <w>924</w>
       <h>343</h>
     </coordinates>
@@ -421,7 +423,7 @@ PAG_ZOOM</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1085</x>
-      <y>525</y>
+      <y>504</y>
       <w>504</w>
       <h>273</h>
     </coordinates>
@@ -431,8 +433,8 @@ PAG_ZOOM</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1309</x>
-      <y>406</y>
+      <x>1316</x>
+      <y>385</y>
       <w>182</w>
       <h>175</h>
     </coordinates>
@@ -459,20 +461,20 @@ PAG_ZOOM</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1197</x>
-      <y>378</y>
-      <w>126</w>
+      <y>357</y>
+      <w>133</w>
       <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 r2=material
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;160.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;170.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>133</x>
-      <y>420</y>
+      <y>399</y>
       <w>182</w>
       <h>175</h>
     </coordinates>
@@ -499,7 +501,7 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>259</x>
-      <y>154</y>
+      <y>133</y>
       <w>112</w>
       <h>105</h>
     </coordinates>
@@ -517,7 +519,7 @@ DIRECCIONAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>42</x>
-      <y>189</y>
+      <y>168</y>
       <w>224</w>
       <h>336</h>
     </coordinates>
@@ -528,7 +530,7 @@ DIRECCIONAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>301</x>
-      <y>84</y>
+      <y>63</y>
       <w>889</w>
       <h>84</h>
     </coordinates>
@@ -539,7 +541,7 @@ DIRECCIONAL</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>700</y>
+      <y>679</y>
       <w>182</w>
       <h>84</h>
     </coordinates>
@@ -557,7 +559,7 @@ DIRECCIONAL</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>245</x>
-      <y>665</y>
+      <y>644</y>
       <w>182</w>
       <h>133</h>
     </coordinates>
@@ -581,7 +583,7 @@ DIRECCIONAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>84</x>
-      <y>581</y>
+      <y>560</y>
       <w>161</w>
       <h>133</h>
     </coordinates>
@@ -592,7 +594,7 @@ DIRECCIONAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>224</x>
-      <y>581</y>
+      <y>560</y>
       <w>112</w>
       <h>98</h>
     </coordinates>
@@ -603,7 +605,7 @@ DIRECCIONAL</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1365</x>
-      <y>217</y>
+      <y>196</y>
       <w>182</w>
       <h>84</h>
     </coordinates>
@@ -622,11 +624,51 @@ DIRECCIONAL</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1197</x>
-      <y>287</y>
+      <y>266</y>
       <w>182</w>
       <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1358</x>
+      <y>574</y>
+      <w>231</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>OBJloader
+--
+
+	
+--
+*+ loadOBJ(const char * path,*
+*std::vector&lt;glm::vec3&gt; &amp; out_vertices,*
+*std::vector&lt;glm::vec2&gt; &amp; out_uvs,*
+*std::vector&lt;glm::vec3&gt; &amp; out_normals):bool* 
+
++ loadAssImp(	const char * path, 
+	std::vector&lt;GLuint&gt; &amp; indices,
+	std::vector&lt;glm::vec3&gt; &amp; vertices,
+	std::vector&lt;glm::vec2&gt; &amp; uvs,
+	std::vector&lt;glm::vec3&gt; &amp; normals,
+	std::vector&lt;glm::vec3&gt; &amp; tangents):bool
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1162</x>
+      <y>420</y>
+      <w>210</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;130.0;240.0;230.0;280.0;250.0</additional_attributes>
   </element>
 </diagram>

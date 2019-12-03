@@ -175,6 +175,18 @@ void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial 
 
 }
 
+void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string textura, std::string normalmap,bool assimp)
+{
+	Pagmodelo* modelo = new Pagmodelo(archivo, textura, normalmap, assimp);
+	modelo->setModoVisualizacion(tipopintar);
+	modelo->setMaterial(material);
+
+
+	modelos.push_back(modelo);
+
+}
+
+
 
 
 void PagRenderer::vistaPlanta()

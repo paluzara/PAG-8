@@ -51,7 +51,7 @@ public:
 
 	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material,std::string textura, std::string normalmap);
 	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material,std::string texura, std::string normalMap);
-
+	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string texura, std::string normalMap, bool asssimp);
 	
 	void vistaPlanta();
 	void vistaAlzado();

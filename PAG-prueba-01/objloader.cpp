@@ -111,7 +111,7 @@ bool loadOBJ(
 }
 
 
-#ifdef USE_ASSIMP
+//#ifdef USE_ASSIMP
 
 // Include AssImp
 #include <assimp/Importer.hpp>      // C++ importer interface
@@ -123,12 +123,13 @@ bool loadAssImp(
 	std::vector<GLuint> & indices,
 	std::vector<glm::vec3> & vertices,
 	std::vector<glm::vec2> & uvs,
-	std::vector<glm::vec3> & normals
+	std::vector<glm::vec3> & normals,
+	std::vector<glm::vec3> & tangents
 ){
 
 	Assimp::Importer importer;
 
-	const aiScene* scene = importer.ReadFile(path, 0/*aiProcess_JoinIdenticalVertices | aiProcess_SortByPType*/);
+	const aiScene* scene = importer.ReadFile(path,aiProcess_CalcTangentSpace |aiProcess_Triangulate |aiProcess_GenSmoothNormals |aiProcess_SortByPType);
 	if( !scene) {
 		fprintf( stderr, importer.GetErrorString());
 		getchar();
@@ -150,11 +151,19 @@ bool loadAssImp(
 		uvs.push_back(glm::vec2(UVW.x, UVW.y));
 	}
 
+	
+
 	// Fill vertices normals
 	normals.reserve(mesh->mNumVertices);
 	for(unsigned int i=0; i<mesh->mNumVertices; i++){
 		aiVector3D n = mesh->mNormals[i];
 		normals.push_back(glm::vec3(n.x, n.y, n.z));
+	}
+
+	tangents.reserve(mesh->mNumVertices);
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+		aiVector3D p = mesh->mTangents[i];
+		tangents.push_back(glm::vec3(p.x, p.y, p.z));
 	}
 
 
@@ -171,4 +180,4 @@ bool loadAssImp(
 
 }
 
-#endif
+//#endif

@@ -340,7 +340,7 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 	
-	bool res = loadOBJ("vaca.obj", vertices, uvs, normals);
+	bool res = loadOBJ(nombreArchivoobj.c_str(), vertices, uvs, normals);
 
 	for (int i=0; i < vertices.size(); i+=3) {
 		vao->addverticenormal(vertices[i], normals[i]);
@@ -365,33 +365,35 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 
 }
 
-//void Pagmodelo::CargarModeloAssimp(std::string nombreArchivoobj, std::string nombreTextura, std::string nomalmap)
-//{
-//
-//	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
-//	posicion = glm::vec3(0, 0, 0);
-//	this->material = new Pagmaterial();
-//	this->textura = new PAGtextura(nombreTextura);
-//	this->normalMap = new PAGtextura(nomalmap);
-//
-//
-//	vao = new Pagvao();
-//
-//	std::vector<glm::vec3> vertices;
-//	std::vector<glm::vec2> uvs;
-//	std::vector<glm::vec3> normals;
-//	std::vector<GLuint> indics;
-//
-//	bool res = loadAssImp("vaca.obj", indics, vertices, uvs, normals);
-//
-//	vao->setVer(vertices);
-//	vao->setNorm(normals);
-//	vao->setCoordt(uvs);
-//	vao->setIndices(indics);
-//
-//	vao->generaArray();
-//
-//}
+Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, std::string nomalmap, bool asimp)
+{
+
+	tranlacion = rotacion = escalado = glm::mat4(1.0f); //matriz identidad
+	posicion = glm::vec3(0, 0, 0);
+	this->material = new Pagmaterial();
+	this->textura = new PAGtextura(nombreTextura);
+	this->normalMap = new PAGtextura(nomalmap);
+
+
+	vao = new Pagvao();
+
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals;
+	std::vector<glm::vec3> tangents;
+	std::vector<GLuint> indics;
+
+	bool res = loadAssImp(nombreArchivoobj.c_str(), indics, vertices, uvs, normals,tangents);
+
+	vao->setVer(vertices);
+	vao->setNorm(normals);
+	vao->setCoordt(uvs);
+	vao->setIndices(indics);
+	vao->setTangents(tangents);
+
+	vao->generaArray();
+
+}
 
 
 void Pagmodelo::trasladar(float x, float y, float z)

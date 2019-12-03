@@ -45,6 +45,11 @@ void Pagvao::setIndices(std::vector<GLuint> _indicesSolido)
 	this->indicesSolido = _indicesSolido;
 }
 
+void Pagvao::setTangents(std::vector<glm::vec3> tangents)
+{
+	this->tangentes = tangents;
+}
+
 
 
 void Pagvao::addtriangulo(glm::vec3 vertice, glm::vec3 vertice1, glm::vec3 vertice2)
