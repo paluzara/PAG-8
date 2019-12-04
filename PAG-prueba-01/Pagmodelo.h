@@ -16,6 +16,8 @@
 
 class Pagmodelo
 {
+
+ protected:	
 	GLenum modoVisualizacion;
 	Pagvao *vao;
 	Pagmaterial *material;

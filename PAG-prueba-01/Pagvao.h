@@ -21,6 +21,9 @@ class Pagvao
 	std::vector<GLuint> indicesPuntos;
 	std::vector<GLuint> indicesAlambre;
 	std::vector<GLuint> indicesSolido;
+	std::vector<GLuint> indicesFan;
+	std::vector<GLuint> indicesStrip;
+
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec3> normales;
 	std::vector<glm::vec2> coordText;

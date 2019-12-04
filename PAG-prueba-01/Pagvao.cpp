@@ -75,7 +75,12 @@ void Pagvao::addIndice(GLenum modoDibujo, GLuint valor)
 	case GL_TRIANGLES:
 		indicesSolido.push_back(valor);
 		break;
-
+	case GL_TRIANGLE_FAN:
+		indicesFan.push_back(valor);
+		break;
+	case GL_TRIANGLE_STRIP:
+		indicesStrip.push_back(valor);
+		break;
 	}
 }
 
