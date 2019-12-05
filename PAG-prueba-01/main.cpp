@@ -8,6 +8,8 @@
 
 
 
+
+
 float red = 0.0;
 float green = 0.0;
 float blue = 0.0;
@@ -198,6 +200,10 @@ int main() {
 	
 	Pagmaterial * vacam= new Pagmaterial(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), glm::vec3(1.0, 1.0, 1.0), 10);
 	PagRenderer::getInstance()->addModelo("vaca.obj", GL_TRIANGLES, vacam, "vaca.png","vaca_normalmap.png");
+
+
+	
+
 	
 	
 	//Transfomaciones para la vaca
@@ -211,7 +217,14 @@ int main() {
     PagRenderer::getInstance()->addModelo(Pagmodelo::PAG_CUBO,GL_TRIANGLES,blancoMetalico, "dice_texture.png", "dice_normalmap.png");
 	PagRenderer::getInstance()->setModeloActivo(1);
 	PagRenderer::getInstance()->escalarModelo(0.8, 0.8, 0.8);
-	
+	PagRenderer::getInstance()->trasladarModelo(10, 0, 0);
+
+	std::vector<glm::vec2> puntos;
+	puntos.push_back(glm::vec2(0,2));
+	puntos.push_back(glm::vec2(2, 2));
+	puntos.push_back(glm::vec2(2, 0));
+	puntos.push_back(glm::vec2(0, 0));
+	PagRenderer::getInstance()->addModeloRevolucion(puntos, 2, 20);
 
 
 	//Crear el suelo

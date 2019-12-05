@@ -15,7 +15,7 @@ PAGperfilSubdivision::PAGperfilSubdivision(std::vector<glm::vec2> puntos)
 		auto p = puntos[i];
 		if (i == 0 && p[0] == 0)
 			this->tapaSuperior = true;
-		if (i == puntos.size() && p[0] == 0)
+		if (i == puntos.size()-1 && p[0] == 0)
 			this->tapaInferior = true;
 
 		if (p[0] < 0) {

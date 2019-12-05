@@ -39,7 +39,7 @@ public:
 		PAG_SUELO
 	};
 
-	void pintate();
+	virtual void pintate();
 	void setMaterial(glm::vec3 ka, glm::vec3 kd, glm::vec3 ks, float sh);
 	void setMaterial(Pagmaterial* material);
 	void setModoVisualizacion( GLenum modo );

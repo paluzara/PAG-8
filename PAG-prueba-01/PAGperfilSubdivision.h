@@ -1,6 +1,5 @@
 
-#include <iostream>
-#include <GL\glew.h>
+
 #include <vector>
 #include <glm.hpp>
 

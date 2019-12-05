@@ -14,6 +14,8 @@ class Pagvao
 	GLuint _iboPuntos;
 	GLuint _iboAlambre;
 	GLuint _iboSolido;
+	GLuint _iboFan;
+	GLuint _iboStrip;
 	bool listo;
 	GLuint vbocoordText;
 	GLuint vboTangentes;

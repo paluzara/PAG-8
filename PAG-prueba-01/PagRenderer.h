@@ -4,12 +4,13 @@
 #include <GL\glew.h>
 #include <string>
 #include "PAGshaderProgram.h"
-#include "Pagmodelo.h"
+#include "PAGmodeloRevolucion.h"
 #include "PAGcamara.h"
 #include "PAGvalues.h"
 #include "Pagluz.h"
 #include "PAGLuzPuntual.h"
 #include "PAGfoco.h"
+
 
 
 class PagRenderer
@@ -52,6 +53,9 @@ public:
 	void addModelo(Pagmodelo::tipoModelo tipo, GLenum tipopintar, Pagmaterial *material,std::string textura, std::string normalmap);
 	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material,std::string texura, std::string normalMap);
 	void addModelo(std::string archivo, GLenum tipopintar, Pagmaterial *material, std::string texura, std::string normalMap, bool asssimp);
+	void addModeloRevolucion(std::vector<glm::vec2> puntos,unsigned int subdivisiones,unsigned int lonchas);
+
+
 	
 	void vistaPlanta();
 	void vistaAlzado();

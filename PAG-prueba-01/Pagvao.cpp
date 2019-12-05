@@ -132,6 +132,18 @@ void Pagvao::generaArray()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboAlambre);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*indicesAlambre.size(),
 		indicesAlambre.data(), GL_STATIC_DRAW);
+	
+	glGenBuffers(1, &_iboFan);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboFan);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*indicesFan.size(),
+		indicesFan.data(), GL_STATIC_DRAW);
+
+	glGenBuffers(1, &_iboStrip);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboStrip);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*indicesStrip.size(),
+		indicesStrip.data(), GL_STATIC_DRAW);
+
+
 
 }
 
@@ -150,6 +162,12 @@ void Pagvao::activaArray(GLenum modoDibujo)
 	case GL_POINTS:
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboPuntos);
 		break;
+	case GL_TRIANGLE_STRIP:
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboStrip);
+		break;
+	case GL_TRIANGLE_FAN:
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _iboFan);
+		break;
 	}
 	
 	listo = true;
@@ -167,6 +185,12 @@ void Pagvao::pintaArray(GLenum modoDibujo)
 		break;
 	case GL_POINTS:
 		glDrawElements(GL_POINTS, indicesPuntos.size(), GL_UNSIGNED_INT, NULL);
+		break;
+	case GL_TRIANGLE_STRIP:
+		glDrawElements(GL_TRIANGLE_STRIP, indicesStrip.size(), GL_UNSIGNED_INT, NULL);
+		break;
+	case GL_TRIANGLE_FAN:
+		glDrawElements(GL_TRIANGLE_FAN, indicesFan.size(), GL_UNSIGNED_INT, NULL);
 		break;
 	}
 

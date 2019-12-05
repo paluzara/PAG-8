@@ -52,8 +52,11 @@ void PagRenderer::refreshCallback() {
 					program->setUniform("TexSamplerBump", 1);
 
 					auto textura = modelo->getTextura();
+					if(textura!=nullptr)
 					textura->activarTextura(GL_TEXTURE0);
+
 					auto normalMap = modelo->getNormalMap();
+					if (normalMap != nullptr)
 					normalMap->activarTextura(GL_TEXTURE1);
 
 
@@ -124,6 +127,8 @@ void PagRenderer::setColorBorrado(GLclampf incR, GLclampf incG, GLclampf incB, G
 void PagRenderer::activaZBuffer()
 {
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_PRIMITIVE_RESTART);
+	glPrimitiveRestartIndex(0xFFFFFFFF);
 }
 
 void PagRenderer::activarLuces()
@@ -184,6 +189,12 @@ void PagRenderer::addModelo(std::string archivo, GLenum tipopintar, Pagmaterial 
 
 	modelos.push_back(modelo);
 
+}
+
+void PagRenderer::addModeloRevolucion(std::vector<glm::vec2> puntos, unsigned int subdivisiones, unsigned int lonchas)
+{
+	PAGmodeloRevolucion *modelo = new PAGmodeloRevolucion(puntos, subdivisiones, lonchas);
+	modelos.push_back(modelo);
 }
 
 

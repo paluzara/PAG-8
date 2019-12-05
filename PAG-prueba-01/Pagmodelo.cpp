@@ -397,6 +397,7 @@ Pagmodelo::Pagmodelo(std::string nombreArchivoobj, std::string nombreTextura, st
 
 Pagmodelo::Pagmodelo()
 {
+	material = new Pagmaterial();
 }
 
 
@@ -433,6 +434,7 @@ void Pagmodelo::añadirTextura(PAGtextura * textura)
 
 PAGtextura * Pagmodelo::getTextura()
 {
+	
 	return this->textura;
 }
 
