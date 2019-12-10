@@ -7,6 +7,7 @@ Pagmaterial::Pagmaterial()
 	this->Ka = glm::vec3(1,1,1);
 	this->Kd = glm::vec3(1, 1, 1);
 	this->Ks = glm::vec3(1, 1, 1);
+	this->Sh = 10;
 }
 
 Pagmaterial::Pagmaterial(glm::vec3 _Ka, glm::vec3 _Kd, glm::vec3 _Ks, float _Sh):Ka(_Ka),Kd(_Kd),Ks(_Ks),Sh(_Sh)
