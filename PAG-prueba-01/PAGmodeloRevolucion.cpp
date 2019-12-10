@@ -33,9 +33,9 @@ PAGmodeloRevolucion::PAGmodeloRevolucion(std::vector<glm::vec2> puntos, unsigned
 	auto delta = 360.0f / float(lonchas);
 //Vertices  normales tangentes
 	auto normales=perfil.calcularNormales();
-	for (int i = 0; i < p.size(); i++) {
+	for (int i = 1; i < p.size()-1; i++) {
 		for (int j = 0; j <= lonchas; j++) { //cuidado el igual
-			float angulo = float(j) * float(delta);
+			float angulo = glm::radians((j) * float(delta));
 			auto punto = p[i];
 			auto normal = normales[i];
 			glm::vec3 pprima(punto[0]*cos(angulo),punto[1],-punto[0]*sin(angulo));
@@ -48,9 +48,9 @@ PAGmodeloRevolucion::PAGmodeloRevolucion(std::vector<glm::vec2> puntos, unsigned
 	}
 //Indices
 	for (int s = 0; s < lonchas; s++) { //aqui sin el igual
-		for (int i = 0; i < p.size(); i++) {
-			int indice1 =(i*(s+1))+s ;
-			int indice2 =(i*(s+1))+(s+1) ;
+		for (int i = 0; i < p.size()-2; i++) {
+			int indice1 =(i*(lonchas+1))+s ;
+			int indice2 =(i*(lonchas+1))+(s+1) ;
 			vao->addIndice(GL_TRIANGLE_STRIP, indice1);
 			vao->addIndice(GL_TRIANGLE_STRIP,indice2);
 		}
@@ -59,11 +59,14 @@ PAGmodeloRevolucion::PAGmodeloRevolucion(std::vector<glm::vec2> puntos, unsigned
 
 //Coordenadas de textura
 	float incrementoX = 0;
+
 	for (int s = 0; s < lonchas; s++) {
 		float incrementoy = 0;
 		
 		for (int pp = 0; pp < p.size(); pp++) {
-			incrementoy += 1 / p.size();
+			float yacum = 0;
+			yacum+=p[pp][1];
+
 			vao->addCoorText(glm::vec2(incrementoX, incrementoy));
 	}
 		incrementoX +=( 1 / lonchas);
@@ -87,7 +90,7 @@ PAGmodeloRevolucion::PAGmodeloRevolucion(std::vector<glm::vec2> puntos, unsigned
 		vaoTapaArriba->addCoorText(glm::vec2(1, 1));
 
 			for (int j = 0; j <= lonchas; j++) { //cuidado el igual
-				float angulo = float(j)* float(delta);
+				float angulo = glm::radians((j) * float(delta));
 				
 			
 				glm::vec3 pprima(p1[0] * cos(angulo), p1[1] , -p1[0] * sin(angulo));
@@ -117,7 +120,7 @@ PAGmodeloRevolucion::PAGmodeloRevolucion(std::vector<glm::vec2> puntos, unsigned
 		vaoTapaAbajo->addTangete(glm::vec3(1, 0, 0));
 		vaoTapaAbajo->addCoorText(glm::vec2(1, 1));
 		for (int j = 0; j <= lonchas; j++) { //cuidado el igual
-			float angulo = float(lonchas) * delta;
+			float angulo = glm::radians((j) * float(delta));
 
 
 			glm::vec3 pprima(p1[0] * cos(angulo), p1[1] , -p1[0] * sin(angulo));

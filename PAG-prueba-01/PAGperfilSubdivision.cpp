@@ -81,6 +81,9 @@ PAGperfilSubdivision PAGperfilSubdivision::subdivide(unsigned int nVeces)
 
 	std::vector<glm::vec2> pprima;
 
+	if (nVeces == 0) {
+		return PAGperfilSubdivision(puntos);
+	}
 
 	for (int j = 0; j < nVeces; j++) {
 

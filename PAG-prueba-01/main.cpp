@@ -219,12 +219,13 @@ int main() {
 	PagRenderer::getInstance()->escalarModelo(0.8, 0.8, 0.8);
 	PagRenderer::getInstance()->trasladarModelo(10, 0, 0);
 
+	//Crear modelo revo
 	std::vector<glm::vec2> puntos;
-	puntos.push_back(glm::vec2(0,2));
-	puntos.push_back(glm::vec2(2, 2));
-	puntos.push_back(glm::vec2(2, 0));
+	puntos.push_back(glm::vec2(0,0.5));
+	puntos.push_back(glm::vec2(0.5, 0.5));
+	puntos.push_back(glm::vec2(0.5, 0));
 	puntos.push_back(glm::vec2(0, 0));
-	PagRenderer::getInstance()->addModeloRevolucion(puntos, 2, 20);
+	PagRenderer::getInstance()->addModeloRevolucion(puntos, 0, 80);
 
 
 	//Crear el suelo
